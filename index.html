@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI News — Lam's Feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/ranges.js"></script>
+<style>
+:root {
+  /* Base palette: shadcn neutral for sidebar/filters, brutalist tokens for cards */
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f5f5f5;
+  --surface-3: #ededed;
+  --border: #e5e5e5;
+  --border-strong: #d4d4d4;
+  --border-hover: #a3a3a3;
+
+  --text: #0a0a0a;
+  --text-soft: #404040;
+  --text-dim: #737373;
+  --text-faint: #a3a3a3;
+
+  /* Brand: VNG Orange */
+  --brand: #f05a22;
+  --brand-soft: #fff1ec;
+  --brand-deep: #d44614;
+
+  /* Brutalist tokens (used by cards, badges, star, pagination) */
+  --brutal-border: #0a0a0a;
+  --shadow-brutal-sm: 3px 3px 0 0 #0a0a0a;
+  --shadow-brutal: 5px 5px 0 0 #0a0a0a;
+  --shadow-brutal-lg: 8px 8px 0 0 #0a0a0a;
+
+  /* Color blocks (used by badges) */
+  --block-yellow: #fff066;
+  --block-pink: #ffb3d9;
+  --block-cyan: #99e6ff;
+  --block-lime: #c8ff66;
+  --block-violet: #d4b3ff;
+  --block-coral: #ff9b85;
+
+  /* shadcn-style soft shadows for sidebar/filters */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-card: var(--shadow-brutal-sm);
+  --shadow-card-hover: var(--shadow-brutal);
+
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--brand); text-decoration: none; }
+a:hover { color: var(--brand-deep); }
+
+/* ============ LAYOUT ============ */
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ============ SIDEBAR (brutalist) ============ */
+aside.app-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  width: 320px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--block-yellow);
+  border-right: 3px solid var(--brutal-border);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--brutal-border);
+}
+.brand h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand h1::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: var(--brand);
+  border: 2px solid var(--brutal-border);
+  flex-shrink: 0;
+}
+.brand .stats {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+#google_translate_element {
+  display: inline-flex;
+  align-items: center;
+}
+#google_translate_element select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+#google_translate_element select:hover { border-color: var(--brand); }
+.goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt, .goog-tooltip,
+.goog-text-highlight, .skiptranslate { display: none !important; box-shadow: none !important; }
+body { top: 0 !important; }
+
+/* ============ FILTERS (vertical sidebar) ============ */
+.filters-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.filters-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.filters-row-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.filter > label {
+  display: block;
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.label-with-info {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+}
+.info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.info-btn:hover { background: var(--brand); color: #fff; }
+.info-tooltip {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 0 var(--brutal-border);
+  padding: 10px 12px;
+  z-index: 40;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.info-tooltip.is-open { display: block; }
+.info-tooltip__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.info-tooltip ul {
+  margin: 0;
+  padding: 0 0 0 8px;
+  list-style: none;
+}
+.info-tooltip li {
+  padding: 3px 0;
+  color: var(--text-soft);
+}
+.info-tooltip li b {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+}
+.filter {
+  position: relative;
+  width: 100%;
+}
+.filter input {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  height: 38px;
+  outline: none;
+  transition: background 0.12s;
+  box-sizing: border-box;
+}
+.filter input:hover { background: var(--block-yellow); }
+.filter input:focus, .filter input:focus-visible {
+  background: var(--surface);
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+.filter select#filter-sort {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  height: 38px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ===== Custom dropdown — neo-brutalist ===== */
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+.dropdown__trigger {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 6px 32px 6px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 38px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  transition: background 0.12s;
+  box-sizing: border-box;
+}
+.dropdown__trigger:hover { background: var(--block-yellow); }
+.dropdown.is-open .dropdown__trigger {
+  background: var(--surface);
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+.dropdown__trigger::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text);
+  border-bottom: 2px solid var(--text);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.18s;
+}
+.dropdown.is-open .dropdown__trigger::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+.dropdown__placeholder {
+  color: var(--text-faint);
+  font-weight: 400;
+}
+.dropdown__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--block-cyan);
+  color: var(--text);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 1px 4px 1px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+.dropdown__chip-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 700;
+  border-left: 1.5px solid var(--brutal-border);
+  margin-left: 2px;
+  padding-left: 4px;
+}
+.dropdown__chip-x:hover { color: var(--brand); }
+.dropdown__panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 0 var(--brutal-border);
+  z-index: 30;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+.dropdown.is-open .dropdown__panel { display: block; }
+.dropdown__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+.dropdown__option:hover { background: var(--block-yellow); }
+.dropdown__option.is-selected { background: var(--brand-soft); font-weight: 700; }
+.dropdown__option.is-disabled { color: var(--text-faint); cursor: not-allowed; opacity: 0.5; }
+.dropdown__check {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  flex-shrink: 0;
+  position: relative;
+  background: var(--surface);
+}
+.dropdown__option.is-selected .dropdown__check {
+  background: var(--brand);
+  border-color: var(--brutal-border);
+}
+.dropdown__option.is-selected .dropdown__check::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0;
+  width: 5px;
+  height: 9px;
+  border-right: 2.5px solid #fff;
+  border-bottom: 2.5px solid #fff;
+  transform: rotate(45deg);
+}
+.dropdown__empty {
+  padding: 10px 12px;
+  color: var(--text-faint);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Choices.js — brutalist multi-select */
+.choices {
+  margin-bottom: 5px;
+  font-family: inherit;
+}
+.choices__inner {
+  background: #ffffff;
+  border: 2px solid #0a0a0a;
+  border-radius: 0;
+  padding: 4px 8px 4px 10px;
+  min-height: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+.choices__list--multiple { display: contents; }
+.choices__input--cloned {
+  flex: 1;
+  min-width: 60px;
+  padding: 4px 0;
+  margin: 0;
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  height: auto;
+}
+.choices {
+  margin-bottom: 5px;
+  font-family: inherit;
+}
+.choices:hover .choices__inner {
+  background: #fffce0;
+}
+/* Hide original native <select> that Choices.js wraps but doesn't fully hide */
+.choices select.choices__input,
+.choices select[hidden] {
+  display: none !important;
+}
+/* Hide any leftover dropdown arrow from native select */
+select::-ms-expand { display: none !important; }
+.choices select { appearance: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; }
+
+/* Hide Choices.js own dropdown arrow indicator (the small triangle/box on right) */
+.choices[data-type*="select-multiple"]::after,
+.choices[data-type*="select-one"]::after,
+.choices::after,
+.choices[data-type*="select-multiple"]::before,
+.choices[data-type*="select-one"]::before,
+.choices::before,
+.choices__list--multiple::after,
+.choices__list--multiple::before {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  background: none !important;
+}
+.choices__list--multiple .choices__item {
+  background: var(--brand-soft);
+  color: var(--text);
+  border: 2px solid var(--brand);
+  border-radius: 0;
+  font-size: 11px;
+  padding: 2px 8px;
+  margin-right: 4px;
+  margin-bottom: 2px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.choices__list--multiple .choices__item.is-disabled {
+  background: var(--surface-2);
+  border-color: var(--text-faint);
+  color: var(--text-faint);
+}
+.choices__list--multiple .choices__item.is-disabled {
+  opacity: 0.5;
+  background: var(--surface-2);
+}
+.choices__list--multiple .choices__item .choices__button {
+  border-left: 1.5px solid var(--brand);
+  margin-left: 6px;
+  padding-left: 8px;
+  opacity: 0.85;
+}
+.choices__list--multiple .choices__item .choices__button:hover { opacity: 1; }
+.choices__list--dropdown {
+  background: var(--surface);
+  border: 2.5px solid var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-brutal);
+  margin-top: 6px;
+  padding: 6px 0;
+}
+.choices__list--dropdown .choices__item--selectable {
+  padding: 8px 14px 8px 36px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 0;
+  margin: 0;
+  color: var(--text);
+  position: relative;
+  transition: background 0.1s, color 0.1s;
+}
+/* Empty checkbox icon */
+.choices__list--dropdown .choices__item--selectable::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  transition: background 0.1s, border-color 0.1s;
+}
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+  background: var(--block-yellow);
+  color: var(--text);
+  font-weight: 700;
+}
+.choices__list--dropdown .choices__item--selectable.is-highlighted::before {
+  border-color: var(--brand);
+}
+.choices__list--dropdown .choices__item--disabled {
+  color: var(--text-faint);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.choices__list--dropdown .choices__item--disabled::before {
+  background: var(--surface-2);
+}
+.choices__input {
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  margin-bottom: 0;
+}
+.choices__input::placeholder { color: var(--text-faint); }
+.choices[data-type*="select-multiple"] .choices__button {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21"><path fill="%23737373" d="M2.59 1L1 2.59 8.41 10 1 17.41 2.59 19 10 11.59 17.41 19 19 17.41 11.59 10 19 2.59 17.41 1 10 8.41z"/></svg>');
+  opacity: 0.7;
+}
+.choices__placeholder {
+  color: var(--text-faint) !important;
+  opacity: 1;
+  font-style: normal;
+  font-weight: 400;
+}
+/* Hide "Tất cả" placeholder when chips selected (Choices.js sets has-no-choices/has-no-results) */
+.choices.has-selection .choices__input--cloned::placeholder {
+  color: transparent;
+}
+.choices.has-selection .choices__input--cloned {
+  width: 24px !important;
+  min-width: 24px !important;
+  flex: 0 0 24px;
+}
+/* Choices.js dropdown arrow positioning */
+.choices[data-type*="select-multiple"]::after,
+.choices[data-type*="select-one"]::after {
+  display: none;
+}
+.choices__list--single { padding: 4px 16px 4px 4px; }
+
+/* Litepicker — brutalist override (high specificity body prefix) */
+body .litepicker {
+  font-family: var(--font-sans) !important;
+  border: 3px solid #0a0a0a !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 0 #0a0a0a !important;
+  background: #ffffff !important;
+  color: var(--text) !important;
+}
+body .litepicker > .container__main { padding: 0 !important; }
+body .litepicker .container__months {
+  background: #ffffff !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 16px !important;
+}
+body .litepicker .container__months .month-item-header div {
+  font-weight: 800 !important;
+  color: #0a0a0a !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+body .litepicker .container__months .month-item-weekdays-row > div {
+  color: #4a4a4a !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+}
+body .litepicker .container__days .day-item {
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  color: #0a0a0a !important;
+  border: 1px solid transparent !important;
+}
+body .litepicker .container__days .day-item:hover {
+  background: #fff066 !important;
+  color: #0a0a0a !important;
+  box-shadow: none !important;
+  border: 1px solid #0a0a0a !important;
+}
+body .litepicker .container__days .day-item.is-start-date,
+body .litepicker .container__days .day-item.is-end-date,
+body .litepicker .container__days .day-item.is-start-date.is-end-date {
+  background: #f05a22 !important;
+  color: #ffffff !important;
+  border: 1px solid #0a0a0a !important;
+  font-weight: 700 !important;
+}
+body .litepicker .container__days .day-item.is-in-range {
+  background: #ffd9c7 !important;
+  color: #0a0a0a !important;
+}
+body .litepicker .container__days .day-item.is-locked,
+body .litepicker .container__days .day-item.is-disabled {
+  color: #a3a3a3 !important;
+  background: transparent !important;
+}
+body .litepicker .container__predefined-ranges {
+  background: #fff066 !important;
+  border-right: 3px solid #0a0a0a !important;
+  padding: 8px 0 !important;
+  min-width: 130px !important;
+}
+body .litepicker .container__predefined-ranges > button {
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+  color: #0a0a0a !important;
+  padding: 8px 14px !important;
+  border: none !important;
+  border-left: 3px solid transparent !important;
+  background: transparent !important;
+  text-align: left !important;
+  width: 100% !important;
+  font-family: var(--font-sans) !important;
+}
+body .litepicker .container__predefined-ranges > button:hover {
+  background: #ffffff !important;
+  border-left-color: #f05a22 !important;
+  color: #f05a22 !important;
+}
+body .litepicker .container__footer {
+  background: #fafafa !important;
+  border-top: 2px solid #0a0a0a !important;
+  padding: 10px 12px !important;
+}
+body .litepicker .container__footer .button-apply {
+  background: #f05a22 !important;
+  color: #ffffff !important;
+  border: 2px solid #0a0a0a !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  padding: 6px 14px !important;
+  box-shadow: 2px 2px 0 0 #0a0a0a !important;
+  cursor: pointer !important;
+}
+body .litepicker .container__footer .button-apply:hover {
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 3px 3px 0 0 #0a0a0a !important;
+}
+body .litepicker .container__footer .button-cancel {
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+  border: 2px solid #0a0a0a !important;
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+  padding: 6px 14px !important;
+  margin-right: 8px !important;
+  cursor: pointer !important;
+}
+body .litepicker .button-previous-month,
+body .litepicker .button-next-month {
+  border-radius: 0 !important;
+  border: 2px solid #0a0a0a !important;
+  background: #ffffff !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+body .litepicker .button-previous-month:hover,
+body .litepicker .button-next-month:hover {
+  background: #fff066 !important;
+}
+body .litepicker .button-previous-month svg,
+body .litepicker .button-next-month svg { fill: #0a0a0a !important; }
+body .litepicker .preview-date-range { font-weight: 700 !important; color: #0a0a0a !important; }
+
+.actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.actions .btn { flex: 1; }
+button.btn {
+  background: var(--brand);
+  color: #fff;
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: filter 0.12s;
+}
+button.btn:hover { filter: brightness(1.1); }
+button.btn:active { filter: brightness(0.92); }
+
+/* ============ MAIN ============ */
+main {
+  flex: 1;
+  min-width: 0;  /* prevent overflow with masonry */
+  padding: 24px 28px 80px;
+}
+
+.empty-state, .loading {
+  text-align: center;
+  padding: 100px 24px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+.loading::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--brand-soft);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============ MASONRY (Flexbox columns — JS distributes) ============ */
+#feed.masonry {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+#feed.masonry .masonry-col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+@media (max-width: 1024px) {
+  #feed.masonry .masonry-col:nth-child(3) { display: none; }
+}
+@media (max-width: 768px) {
+  #feed.masonry { flex-direction: column; }
+  #feed.masonry .masonry-col { width: 100%; }
+}
+/* When expand-all is ON, switch to 2 columns for better long-form reading */
+#feed.masonry.expanded-all {
+  column-count: 2;
+}
+@media (max-width: 1100px) {
+  #feed.masonry.expanded-all { column-count: 1; }
+}
+@media (max-width: 1280px) {
+  aside.app-sidebar { width: 240px; }
+}
+@media (max-width: 1024px) {
+  #feed.masonry { column-count: 2; }
+}
+@media (max-width: 768px) {
+  body { flex-direction: column; }
+  aside.app-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  #feed.masonry { column-count: 1; }
+  main { padding: 16px; }
+}
+
+/* ============ CARD ============ */
+article.entry {
+  display: block;
+  width: 100%;
+  background: var(--surface);
+  border: 2.5px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 16px 18px;
+  margin: 0;
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+/* (hover styles defined in ANIMATIONS section below) */
+article.entry.skim { opacity: 0.78; }
+
+.entry-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.entry-top time {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* New: meta bar AFTER summary (badges + source + lang + date) */
+.entry-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--border);
+}
+.entry-meta-bar time {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  white-space: nowrap;
+}
+.badge.source {
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-mono);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+/* Type color blocks — brutalist solid fills */
+.badge.type-research-published { background: var(--block-cyan); }
+.badge.type-research-draft { background: var(--block-violet); }
+.badge.type-company-blog { background: var(--block-pink); }
+.badge.type-personal-blog { background: var(--block-lime); }
+.badge.type-newsletter { background: var(--surface-3); }
+.badge.type-release { background: var(--brand); color: #fff; }
+.badge.type-tutorial { background: var(--block-yellow); }
+.badge.type-essay { background: var(--block-violet); }
+.badge.type-news { background: var(--surface); }
+
+.badge.lang { font-family: var(--font-mono); }
+.badge.lang-en { background: var(--block-cyan); }
+.badge.lang-vi { background: var(--block-coral); }
+
+/* Importance accent */
+.badge.importance-must-read {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+  font-weight: 600;
+}
+.badge.importance-must-read::before {
+  content: '★';
+  font-size: 10px;
+}
+
+/* Star toggle — top-right corner inside card, brutalist box */
+.star-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--surface);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  padding: 0;
+  transition: transform 0.12s, background 0.12s, color 0.12s;
+}
+.star-btn:hover {
+  background: var(--brand);
+  color: #fff;
+  transform: rotate(-8deg) scale(1.1);
+}
+.star-btn.starred {
+  background: var(--brand);
+  color: #fff;
+}
+.star-btn.starred::before { content: '★'; }
+.star-btn:not(.starred)::before { content: '☆'; }
+.star-btn:active { transform: scale(0.92); }
+
+/* Starred entry — brand block highlight */
+article.entry.starred {
+  background: var(--brand-soft);
+  border-color: var(--brand);
+  border-width: 3px;
+  box-shadow: 5px 5px 0 0 var(--brand);
+}
+article.entry.starred:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 0 var(--brand);
+}
+article.entry.starred:has(.summary-text.expanded) {
+  border-color: var(--brand);
+  box-shadow: 8px 8px 0 0 var(--brand);
+}
+
+article.entry h2 {
+  margin: 6px 0 10px 0;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding-right: 30px;  /* leave space for star badge */
+}
+article.entry h2 a {
+  color: var(--text);
+  transition: color 0.15s;
+}
+article.entry h2 a:hover { color: var(--brand); }
+
+.summary {
+  color: var(--text-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0 0 10px 0;
+}
+.summary-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.summary-text {
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.summary-text.expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 4px;
+  animation: expand-reveal 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.summary-text.expanded::-webkit-scrollbar { width: 4px; }
+.summary-text.expanded::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+/* Card grows when summary expanded — indigo accent (NOT brand orange — orange reserved for starred) */
+article.entry:has(.summary-text.expanded) {
+  transform: scale(1.015);
+  z-index: 5;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12), 0 0 0 1px #6366f1;
+  border-color: #6366f1;
+}
+
+@keyframes expand-reveal {
+  from { opacity: 0.3; max-height: 60px; }
+  to { opacity: 1; max-height: 600px; }
+}
+.summary-toggle {
+  display: inline-block;
+  margin-top: 4px;
+  background: none;
+  border: none;
+  color: var(--brand);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 0;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+/* Search keyword highlight */
+mark.search-highlight {
+  background: #fff3a8;
+  color: #422006;
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.summary-toggle:hover { color: var(--brand-deep); }
+.summary-toggle::before { content: "▸ "; }
+.summary-toggle.expanded::before { content: "▾ "; }
+
+.classifications {
+  font-size: 11px;
+  color: var(--text-faint);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+}
+.classifications span strong {
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.tags span {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.entry-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11px;
+}
+.entry-link {
+  color: var(--text-faint);
+  font-size: 11px;
+  transition: color 0.15s;
+}
+.entry-link:hover { color: var(--brand); }
+.entry-link::after { content: ' ↗'; }
+
+footer.feed-footer {
+  text-align: center;
+  padding: 30px 16px 16px;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+/* Pagination — brutalist */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 32px 16px 8px;
+  margin-top: 20px;
+}
+.page-btn {
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--brutal-border);
+  border-radius: 0;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 38px;
+  box-shadow: 3px 3px 0 0 var(--border);
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+}
+.page-btn:hover:not(:disabled) {
+  background: var(--block-yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 0 var(--border);
+}
+.page-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--border);
+}
+.page-btn.is-current {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--border);
+}
+.page-btn.is-disabled,
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: 2px 2px 0 0 var(--border);
+}
+.page-ellipsis {
+  padding: 0 6px;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pop {
+  0% { transform: scale(0.85); }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Sidebar slide-in on first load */
+aside.app-sidebar {
+  animation: slide-in-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Brand orange cube subtle pulse */
+.brand h1::before {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brand h1:hover::before {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* Cards stagger fade-in */
+article.entry {
+  animation: fade-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+article.entry:nth-child(1) { animation-delay: 0.02s; }
+article.entry:nth-child(2) { animation-delay: 0.05s; }
+article.entry:nth-child(3) { animation-delay: 0.08s; }
+article.entry:nth-child(4) { animation-delay: 0.11s; }
+article.entry:nth-child(5) { animation-delay: 0.14s; }
+article.entry:nth-child(6) { animation-delay: 0.17s; }
+article.entry:nth-child(7) { animation-delay: 0.2s; }
+article.entry:nth-child(8) { animation-delay: 0.23s; }
+article.entry:nth-child(9) { animation-delay: 0.26s; }
+article.entry:nth-child(n+10) { animation-delay: 0.3s; }
+
+article.entry:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-brutal);
+}
+
+/* Title link underline animation */
+article.entry h2 a {
+  position: relative;
+  background-image: linear-gradient(var(--brand), var(--brand));
+  background-size: 0 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.3s ease, color 0.15s;
+}
+article.entry h2 a:hover {
+  background-size: 100% 1.5px;
+  color: var(--brand);
+}
+
+/* Star button — pop on click (brutalist hover defined above) */
+.star-btn.starred {
+  animation: pop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Show more button — gentle slide hint */
+.summary-toggle {
+  transition: color 0.15s, padding-left 0.2s ease;
+}
+.summary-toggle:hover {
+  color: var(--brand-deep);
+  padding-left: 4px;
+}
+
+/* Badge: subtle scale on hover */
+.badge {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.entry-top:hover .badge {
+  transform: translateY(-1px);
+}
+
+/* Filter chips bounce-in when added */
+.choices__list--multiple .choices__item {
+  animation: pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.15s, opacity 0.15s;
+}
+.choices__list--multiple .choices__item:hover {
+  background: var(--surface-2);
+}
+
+/* Reset button pulse hint when filters active */
+.btn {
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+
+/* Loading shimmer */
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  pointer-events: none;
+}
+.loading { position: relative; overflow: hidden; }
+
+/* Stats counter — fade transition */
+.stats {
+  transition: color 0.2s;
+}
+
+/* Smooth scroll behavior */
+html { scroll-behavior: smooth; }
+
+/* Choices.js dropdown enter */
+.choices__list--dropdown.is-active {
+  animation: fade-in 0.18s ease-out;
+}
+
+/* ============ A11Y ============ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<aside class="app-sidebar">
+  <div class="brand">
+    <h1 class="notranslate">AI News</h1>
+  </div>
+  <div id="google_translate_element"></div>
+  <div class="stats notranslate" id="stats">Đang tải…</div>
+
+  <div class="filters-wrap">
+    <div class="filters-row">
+      <div class="filter">
+        <label>Source</label>
+        <div class="dropdown" data-id="filter-source"></div>
+      </div>
+      <div class="filter">
+        <label class="label-with-info">
+          Type
+          <button class="info-btn" type="button" aria-label="Type definitions" data-tooltip="type-tooltip">i</button>
+        </label>
+        <div class="dropdown" data-id="filter-type"></div>
+        <div class="info-tooltip" id="type-tooltip">
+          <div class="info-tooltip__title">Type values</div>
+          <ul>
+            <li><b>research-published</b> — paper conference accepted (NeurIPS, ICML)</li>
+            <li><b>research-draft</b> — arXiv preprint, chưa peer-review</li>
+            <li><b>company-blog</b> — corporate news (Anthropic, OpenAI)</li>
+            <li><b>personal-blog</b> — solo author (Simon Willison, Karpathy)</li>
+            <li><b>newsletter</b> — curated digest (Import AI, TLDR AI)</li>
+            <li><b>release</b> — model/product launch</li>
+            <li><b>tutorial</b> — how-to, walkthrough</li>
+            <li><b>essay</b> — long-form opinion</li>
+            <li><b>news</b> — short announcement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="filter">
+        <label>Language</label>
+        <div class="dropdown" data-id="filter-language" data-options='[{"value":"en","label":"English"},{"value":"vi","label":"Tiếng Việt"}]'></div>
+      </div>
+      <div class="filter">
+        <label>Importance</label>
+        <div class="dropdown" data-id="filter-importance" data-options='[{"value":"must-read","label":"★ Must read (starred)"},{"value":"worth-reading","label":"Worth reading"},{"value":"skim","label":"Skim"}]'></div>
+      </div>
+    </div>
+
+    <div class="filters-row-2">
+      <div class="filter">
+        <label for="filter-search">Search</label>
+        <input id="filter-search" type="text" placeholder="Tìm trong title hoặc summary…">
+      </div>
+      <div class="filter">
+        <label for="filter-daterange">Date range</label>
+        <input id="filter-daterange" type="text" readonly placeholder="All dates">
+        <input id="filter-from" type="hidden">
+        <input id="filter-to" type="hidden">
+      </div>
+      <div class="filter">
+        <label for="filter-sort">Sort</label>
+        <select id="filter-sort">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="importance">By importance</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-expand-all" type="button" title="Expand all summaries">⤓ All</button>
+        <button class="btn" id="btn-reset" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<main>
+  <div id="feed" class="loading">Đang tải dữ liệu…</div>
+  <nav id="pagination" class="pagination" style="display:none;"></nav>
+  <footer class="feed-footer" id="footer-actions" style="display:none;">
+    <button class="btn" id="btn-load-older">Load older months</button>
+  </footer>
+</main>
+
+<script>
+const STARRED_KEY = 'ai-news.starred.v1';
+
+const PAGE_SIZE = 200;
+
+const state = {
+  manifest: null,
+  loadedMonths: new Set(),
+  entries: [],
+  filtered: [],
+  starred: new Set(),  // Set of entry IDs starred manually by Lam
+  choices: {},  // Choices.js instances by select id
+  isPopulating: false,  // guard against re-entrant populateDropdowns
+  expandAll: false,     // toggle: show all summaries fully
+  searchTerm: '',       // current search keyword for highlight
+  page: 1,              // current page (1-indexed)
+};
+
+function loadStarredLocal() {
+  try {
+    const raw = localStorage.getItem(STARRED_KEY);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch { return new Set(); }
+}
+
+function saveStarredLocal() {
+  try {
+    localStorage.setItem(STARRED_KEY, JSON.stringify([...state.starred]));
+  } catch {}
+}
+
+async function loadStarredRemote() {
+  try {
+    const res = await fetch('starred.json', { cache: 'no-store' });
+    if (!res.ok) return new Set();
+    const data = await res.json();
+    return new Set(Object.keys(data.starred || {}));
+  } catch { return new Set(); }
+}
+
+async function syncStarToServer(id, starred) {
+  try {
+    await fetch('/api/star', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, starred }),
+    });
+  } catch (e) {
+    console.warn('Star sync to starred.json failed (server may be offline):', e);
+  }
+}
+
+function toggleStar(id) {
+  const isStarred = state.starred.has(id);
+  if (isStarred) state.starred.delete(id);
+  else state.starred.add(id);
+  saveStarredLocal();
+  syncStarToServer(id, !isStarred);
+  return !isStarred;
+}
+
+async function loadManifest() {
+  const res = await fetch('data/manifest.json', { cache: 'no-store' });
+  if (!res.ok) throw new Error('manifest.json không tải được. Đảm bảo bạn đã chạy start.bat (local server).');
+  state.manifest = await res.json();
+}
+
+async function loadMonth(month) {
+  if (state.loadedMonths.has(month)) return;
+  // Track in-flight loads to prevent race condition (concurrent calls
+  // pushing same entries twice).
+  state._inflight = state._inflight || {};
+  if (state._inflight[month]) return state._inflight[month];
+
+  state._inflight[month] = (async () => {
+    try {
+      const res = await fetch(`data/entries-${month}.jsonl`, { cache: 'no-store' });
+      if (!res.ok) return;
+      const text = await res.text();
+      const monthEntries = text.split('\n')
+        .filter(line => line.trim())
+        .map(line => {
+          try { return JSON.parse(line); } catch { return null; }
+        })
+        .filter(Boolean);
+      // Re-check guard after await (another caller may have completed first)
+      if (state.loadedMonths.has(month)) return;
+      // Dedupe by id at insertion time as defensive measure
+      const existingIds = new Set(state.entries.map(e => e.id));
+      const fresh = monthEntries.filter(e => !existingIds.has(e.id));
+      state.entries.push(...fresh);
+      state.loadedMonths.add(month);
+    } finally {
+      delete state._inflight[month];
+    }
+  })();
+  return state._inflight[month];
+}
+
+function unique(arr) { return [...new Set(arr.flat().filter(Boolean))]; }
+
+/* ==========  Custom dropdown (vanilla JS, multi-select)  ========== */
+const dropdowns = {};
+
+function initDropdowns() {
+  document.querySelectorAll('.dropdown').forEach(wrap => {
+    const id = wrap.dataset.id;
+    const fixed = wrap.dataset.options ? JSON.parse(wrap.dataset.options) : null;
+    const dd = createDropdown(wrap, id, fixed);
+    dropdowns[id] = dd;
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    Object.values(dropdowns).forEach(dd => {
+      if (!dd.wrap.contains(e.target)) dd.close();
+    });
+  });
+}
+
+function createDropdown(wrap, id, fixedOptions) {
+  const state_ = { selected: new Set(), available: [] };
+
+  wrap.innerHTML = `
+    <button type="button" class="dropdown__trigger"></button>
+    <div class="dropdown__panel"></div>
+  `;
+  const trigger = wrap.querySelector('.dropdown__trigger');
+  const panel = wrap.querySelector('.dropdown__panel');
+
+  function renderTrigger() {
+    if (state_.selected.size === 0) {
+      trigger.innerHTML = '<span class="dropdown__placeholder">Tất cả</span>';
+    } else {
+      trigger.innerHTML = [...state_.selected].map(v =>
+        `<span class="dropdown__chip">${escape(v)}<span class="dropdown__chip-x" data-val="${escape(v)}">×</span></span>`
+      ).join('');
+    }
+  }
+
+  function renderPanel() {
+    const allValues = state_.available.length ? state_.available : (fixedOptions ? fixedOptions.map(o => o.value) : []);
+    const labelMap = fixedOptions
+      ? Object.fromEntries(fixedOptions.map(o => [o.value, o.label]))
+      : {};
+
+    const merged = [...new Set([...allValues, ...state_.selected])];
+    if (merged.length === 0) {
+      panel.innerHTML = '<div class="dropdown__empty">Hết lựa chọn</div>';
+      return;
+    }
+    panel.innerHTML = merged.map(v => {
+      const isSelected = state_.selected.has(v);
+      const label = labelMap[v] || v;
+      return `<div class="dropdown__option ${isSelected ? 'is-selected' : ''}" data-val="${escape(v)}">
+        <span class="dropdown__check"></span>
+        <span>${escape(label)}</span>
+      </div>`;
+    }).join('');
+  }
+
+  function emit() {
+    if (!state.isPopulating) applyFilters();
+  }
+
+  function open() { wrap.classList.add('is-open'); renderPanel(); }
+  function close() { wrap.classList.remove('is-open'); }
+  function toggle() { wrap.classList.contains('is-open') ? close() : open(); }
+
+  trigger.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dropdown__chip-x')) {
+      const v = e.target.dataset.val;
+      state_.selected.delete(v);
+      renderTrigger();
+      emit();
+      return;
+    }
+    toggle();
+  });
+
+  panel.addEventListener('click', (e) => {
+    const opt = e.target.closest('.dropdown__option');
+    if (!opt || opt.classList.contains('is-disabled')) return;
+    e.stopPropagation();  // prevent outside-click handler closing dropdown
+    const v = opt.dataset.val;
+    if (state_.selected.has(v)) state_.selected.delete(v);
+    else state_.selected.add(v);
+    // Update only this option's selected state in DOM (don't re-render whole panel)
+    opt.classList.toggle('is-selected');
+    renderTrigger();
+    emit();
+  });
+
+  return {
+    wrap,
+    open,
+    close,
+    setAvailable(arr) { state_.available = arr; renderTrigger(); },
+    getValue() { return [...state_.selected]; },
+    clear() { state_.selected.clear(); renderTrigger(); },
+    init() { renderTrigger(); },
+  };
+}
+
+function initChoices() {
+  // Custom dropdowns init
+  initDropdowns();
+  Object.values(dropdowns).forEach(dd => dd.init());
+}
+
+/**
+ * Populate dropdowns with cascading availability:
+ * each filter axis only shows values present in entries that match
+ * ALL OTHER active filters (source/type/topic/importance).
+ *
+ * Implementation: for each axis, recompute candidate entries by applying
+ * filters EXCLUDING that axis, then collect unique values from those.
+ */
+function entriesMatchingExcept(exceptAxis) {
+  const fSource = exceptAxis !== 'source' ? getMulti('filter-source') : [];
+  const fType = exceptAxis !== 'type' ? getMulti('filter-type') : [];
+  const fLanguage = exceptAxis !== 'language' ? getMulti('filter-language') : [];
+  const fImportance = exceptAxis !== 'importance' ? getMulti('filter-importance') : [];
+
+  return state.entries.filter(e => {
+    if (fSource.length && !fSource.includes(e.source)) return false;
+    if (fType.length && !(e.types || []).some(t => fType.includes(t))) return false;
+    if (fLanguage.length && !fLanguage.includes(e.language || 'en')) return false;
+    if (fImportance.length) {
+      const ok = (fImportance.includes('must-read') && state.starred.has(e.id)) ||
+                 fImportance.filter(v => v !== 'must-read').includes(e.importance);
+      if (!ok) return false;
+    }
+    return true;
+  });
+}
+
+function populateDropdowns() {
+  if (state.isPopulating) return;
+  state.isPopulating = true;
+
+  const sources = unique(entriesMatchingExcept('source').map(e => e.source)).sort();
+  const types = unique(entriesMatchingExcept('type').map(e => e.types || [])).sort();
+
+  const fill = (id, available) => {
+    const dd = dropdowns[id];
+    if (dd) dd.setAvailable(available);
+  };
+  fill('filter-source', sources);
+  fill('filter-type', types);
+
+  state.isPopulating = false;
+}
+
+function getMulti(id) {
+  const dd = dropdowns[id];
+  return dd ? dd.getValue() : [];
+}
+
+async function ensureAllLoadedIfActiveFilter() {
+  const fSource = getMulti('filter-source');
+  const fType = getMulti('filter-type');
+  const fLanguage = getMulti('filter-language');
+  const fImportance = getMulti('filter-importance');
+  const fSearch = document.getElementById('filter-search').value.trim();
+  const fFrom = document.getElementById('filter-from').value;
+  const fTo = document.getElementById('filter-to').value;
+
+  const hasActiveFilter = fSource.length || fType.length ||
+                         fLanguage.length || fImportance.length || fSearch || fFrom || fTo;
+
+  if (!hasActiveFilter) return false;
+
+  const allMonths = state.manifest?.months || [];
+  const remaining = allMonths.filter(m => !state.loadedMonths.has(m));
+  if (!remaining.length) return false;
+
+  for (const m of remaining) await loadMonth(m);
+  populateDropdowns();
+  return true;  // signal that data changed → caller should re-apply filters
+}
+
+function applyFilters() {
+  // Auto-load remaining months if user has active filters (re-applies after load)
+  ensureAllLoadedIfActiveFilter().then(loaded => {
+    if (loaded) applyFiltersSync();
+  });
+  applyFiltersSync();
+}
+
+function applyFiltersSync() {
+  // Defensive: dedupe state.entries by id (in case a race condition snuck through)
+  if (state.entries.length > 0) {
+    const seen = new Set();
+    state.entries = state.entries.filter(e => {
+      if (!e.id || seen.has(e.id)) return false;
+      seen.add(e.id);
+      return true;
+    });
+  }
+
+  const fSource = getMulti('filter-source');
+  const fType = getMulti('filter-type');
+  const fLanguage = getMulti('filter-language');
+  const fImportance = getMulti('filter-importance');
+  const fSearch = document.getElementById('filter-search').value.trim();
+  state.searchTerm = fSearch;
+  const fSearchLower = fSearch.toLowerCase();
+  const fFrom = document.getElementById('filter-from').value;
+  const fTo = document.getElementById('filter-to').value;
+  const fSort = document.getElementById('filter-sort').value;
+
+  let result = state.entries.slice();
+
+  // OR within axis, AND across axes
+  if (fSource.length) result = result.filter(e => fSource.includes(e.source));
+  if (fType.length) result = result.filter(e => (e.types || []).some(t => fType.includes(t)));
+  if (fLanguage.length) result = result.filter(e => fLanguage.includes(e.language || 'en'));
+  if (fImportance.length) {
+    result = result.filter(e => {
+      if (fImportance.includes('must-read') && state.starred.has(e.id)) return true;
+      if (fImportance.filter(v => v !== 'must-read').includes(e.importance)) return true;
+      return false;
+    });
+  }
+  if (fFrom) result = result.filter(e => (e.date || '') >= fFrom);
+  if (fTo) result = result.filter(e => (e.date || '') <= fTo);
+  if (fSearchLower) {
+    result = result.filter(e =>
+      (e.title || '').toLowerCase().includes(fSearchLower) ||
+      (e.excerpt_vn || e.excerpt || '').toLowerCase().includes(fSearchLower)
+    );
+  }
+
+  const importanceOrder = { 'worth-reading': 1, 'skim': 2 };
+  if (fSort === 'newest') result.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  else if (fSort === 'oldest') result.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  else if (fSort === 'importance') {
+    result.sort((a, b) => {
+      // Starred (manual must-read) always first
+      const sa = state.starred.has(a.id) ? 0 : 99;
+      const sb = state.starred.has(b.id) ? 0 : 99;
+      if (sa !== sb) return sa - sb;
+      const oa = importanceOrder[a.importance] ?? 3;
+      const ob = importanceOrder[b.importance] ?? 3;
+      if (oa !== ob) return oa - ob;
+      return (b.date || '').localeCompare(a.date || '');
+    });
+  }
+
+  state.filtered = result;
+  render();
+  // Cascading filter availability — refresh dropdown options to only show
+  // values present in entries matching all OTHER axes
+  // Defer to next tick so Choices.js finishes its own render first
+  setTimeout(populateDropdowns, 0);
+}
+
+function escape(text) {
+  return (text || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function highlight(text, term) {
+  const safe = escape(text);
+  if (!term) return safe;
+  const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`(${escapedTerm})`, 'gi');
+  return safe.replace(re, '<mark class="search-highlight">$1</mark>');
+}
+
+function renderEntry(entry) {
+  const types = entry.types || [];
+  const topics = (entry.topics || []).join(', ') || '—';
+  const tags = (entry.tags || []).map(t => `<span class="notranslate">${escape(t)}</span>`).join('');
+  const summary = entry.excerpt_vn || entry.excerpt || '';
+  const orgName = entry.source_org || entry.source || '';
+  const isStarred = state.starred.has(entry.id);
+  const cardClass = (entry.importance === 'skim' ? ' skim' : '') + (isStarred ? ' starred' : '');
+
+  const typeBadges = types.map(t => `<span class="badge type-${escape(t)} notranslate">${escape(t)}</span>`).join('');
+
+  const term = state.searchTerm;
+  const titleHtml = highlight(entry.title, term);
+  const summaryHtml = highlight(summary, term);
+  const isLong = summary.length > 220;
+  const showExpanded = state.expandAll && isLong;
+  const summaryClass = showExpanded ? 'summary-text expanded' : 'summary-text';
+  const toggleLabel = showExpanded ? 'Show less' : 'Show more';
+  const toggleClass = showExpanded ? 'summary-toggle notranslate expanded' : 'summary-toggle notranslate';
+
+  return `
+    <article class="entry${cardClass}" data-id="${escape(entry.id)}">
+      <button class="star-btn ${isStarred ? 'starred' : ''} notranslate" type="button" aria-label="Toggle must-read" title="Toggle must-read"></button>
+      <h2><a href="${escape(entry.url)}" target="_blank" rel="noopener noreferrer">${titleHtml}</a></h2>
+      ${summary ? `<div class="summary"><div class="${summaryClass}">${summaryHtml}</div>${isLong ? `<button class="${toggleClass}" type="button">${toggleLabel}</button>` : ''}</div>` : ''}
+      <div class="entry-meta-bar">
+        ${typeBadges}
+        <span class="badge source notranslate">${escape(orgName)}</span>
+        ${entry.language ? `<span class="badge lang lang-${escape(entry.language)} notranslate">${escape(entry.language)}</span>` : ''}
+        ${entry.date ? `<time class="notranslate">${escape(entry.date)}</time>` : ''}
+      </div>
+      ${tags ? `<div class="tags">${tags}</div>` : ''}
+    </article>
+  `;
+}
+
+function render() {
+  const feed = document.getElementById('feed');
+  const loaded = state.entries.length;
+  const showing = state.filtered.length;
+  const totalAll = state.manifest?.total_entries ?? loaded;
+  const stats = document.getElementById('stats');
+  if (loaded < totalAll) {
+    stats.textContent = `Hiển thị ${showing} / ${totalAll} entries · ${loaded} đã tải`;
+  } else {
+    stats.textContent = `Hiển thị ${showing} / ${totalAll} entries`;
+  }
+
+  if (showing === 0) {
+    feed.className = 'empty-state';
+    feed.innerHTML = loaded === 0
+      ? '<p>Chưa có entry nào. Đợi routines chạy hoặc <code>git pull</code> để sync mới nhất.</p>'
+      : '<p>Không có entry khớp filter. Reset để xem tất cả.</p>';
+    return;
+  }
+  feed.className = state.expandAll ? 'masonry expanded-all' : 'masonry';
+
+  // Pagination: PAGE_SIZE entries/page
+  const totalPages = Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE));
+  if (state.page > totalPages) state.page = 1;
+  const startIdx = (state.page - 1) * PAGE_SIZE;
+  const visible = state.filtered.slice(startIdx, startIdx + PAGE_SIZE);
+
+  // Distribute cards into 3 columns (or 2 in expand-all mode)
+  const numCols = state.expandAll ? 2 : (window.innerWidth <= 1024 ? 2 : 3);
+  const cols = Array.from({ length: numCols }, () => []);
+  visible.forEach((entry, i) => {
+    cols[i % numCols].push(entry);
+  });
+  feed.innerHTML = cols.map(colEntries =>
+    `<div class="masonry-col">${colEntries.map(renderEntry).join('')}</div>`
+  ).join('');
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const wrap = document.getElementById('pagination');
+  if (!wrap) return;
+  if (totalPages <= 1) {
+    wrap.innerHTML = '';
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = 'flex';
+  const cur = state.page;
+  const buttons = [];
+
+  buttons.push(`<button class="page-btn ${cur === 1 ? 'is-disabled' : ''}" data-page="${cur - 1}" type="button" ${cur === 1 ? 'disabled' : ''}>‹ Prev</button>`);
+
+  // Page numbers: show first, last, current ± 2, with ellipsis
+  const pages = new Set([1, totalPages, cur - 1, cur, cur + 1]);
+  if (cur - 2 > 1) pages.add(cur - 2);
+  if (cur + 2 < totalPages) pages.add(cur + 2);
+  const sorted = [...pages].filter(p => p >= 1 && p <= totalPages).sort((a, b) => a - b);
+
+  let prev = 0;
+  for (const p of sorted) {
+    if (p - prev > 1) buttons.push('<span class="page-ellipsis">…</span>');
+    buttons.push(`<button class="page-btn ${p === cur ? 'is-current' : ''}" data-page="${p}" type="button">${p}</button>`);
+    prev = p;
+  }
+
+  buttons.push(`<button class="page-btn ${cur === totalPages ? 'is-disabled' : ''}" data-page="${cur + 1}" type="button" ${cur === totalPages ? 'disabled' : ''}>Next ›</button>`);
+
+  wrap.innerHTML = buttons.join('');
+}
+
+function initDatePicker() {
+  if (typeof Litepicker === 'undefined') return;
+  const input = document.getElementById('filter-daterange');
+  if (!input || state._datePicker) return;
+
+  const today = () => new Date();
+  const daysAgo = (n) => { const d = new Date(); d.setDate(d.getDate() - n); return d; };
+  const startOfWeek = () => {
+    const d = new Date();
+    const day = d.getDay() === 0 ? 6 : d.getDay() - 1;  // Mon = 0
+    d.setDate(d.getDate() - day);
+    return d;
+  };
+  const startOfMonth = () => {
+    const d = new Date();
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  };
+  const startOfYear = () => {
+    const d = new Date();
+    return new Date(d.getFullYear(), 0, 1);
+  };
+  const endOfLastMonth = () => {
+    const d = new Date();
+    return new Date(d.getFullYear(), d.getMonth(), 0);
+  };
+  const startOfLastMonth = () => {
+    const d = new Date();
+    return new Date(d.getFullYear(), d.getMonth() - 1, 1);
+  };
+
+  state._datePicker = new Litepicker({
+    element: input,
+    singleMode: false,
+    numberOfMonths: 2,
+    numberOfColumns: 2,
+    format: 'YYYY-MM-DD',
+    autoApply: false,
+    plugins: ['ranges'],
+    ranges: {
+      customRanges: {
+        'Today': [today(), today()],
+        'Yesterday': [daysAgo(1), daysAgo(1)],
+        'Last 7 days': [daysAgo(6), today()],
+        'Last 15 days': [daysAgo(14), today()],
+        'This week': [startOfWeek(), today()],
+        'This month': [startOfMonth(), today()],
+        'Last month': [startOfLastMonth(), endOfLastMonth()],
+        'This year': [startOfYear(), today()],
+      },
+      position: 'left',
+    },
+    setup: (picker) => {
+      picker.on('selected', (start, end) => {
+        document.getElementById('filter-from').value = start.format('YYYY-MM-DD');
+        document.getElementById('filter-to').value = end.format('YYYY-MM-DD');
+        applyFilters();
+      });
+      picker.on('clear:selection', () => {
+        document.getElementById('filter-from').value = '';
+        document.getElementById('filter-to').value = '';
+        applyFilters();
+      });
+    },
+  });
+}
+
+function bindEvents() {
+  // Custom dropdowns wired in initChoices. Date range wired in initDatePicker.
+  document.getElementById('filter-sort').addEventListener('change', applyFilters);
+
+  // Info button → toggle tooltip
+  document.querySelectorAll('.info-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const tooltipId = btn.dataset.tooltip;
+      const tooltip = document.getElementById(tooltipId);
+      if (!tooltip) return;
+      // Close all other tooltips
+      document.querySelectorAll('.info-tooltip.is-open').forEach(t => {
+        if (t !== tooltip) t.classList.remove('is-open');
+      });
+      tooltip.classList.toggle('is-open');
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.info-tooltip') && !e.target.classList.contains('info-btn')) {
+      document.querySelectorAll('.info-tooltip.is-open').forEach(t => t.classList.remove('is-open'));
+    }
+  });
+
+  let searchTimer;
+  document.getElementById('filter-search').addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(applyFilters, 200);
+  });
+
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    Object.values(dropdowns).forEach(dd => dd.clear());
+    ['filter-from','filter-to'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    const dr = document.getElementById('filter-daterange');
+    if (dr) dr.value = '';
+    if (state._datePicker) state._datePicker.clearSelection?.();
+    document.getElementById('filter-search').value = '';
+    document.getElementById('filter-sort').value = 'newest';
+    applyFilters();
+  });
+
+  document.getElementById('btn-expand-all').addEventListener('click', () => {
+    state.expandAll = !state.expandAll;
+    const btn = document.getElementById('btn-expand-all');
+    btn.textContent = state.expandAll ? '⤒ Collapse' : '⤓ Expand all';
+    render();
+  });
+
+  // Pagination delegate
+  document.getElementById('pagination').addEventListener('click', (e) => {
+    const btn = e.target.closest('.page-btn');
+    if (!btn || btn.disabled) return;
+    const page = parseInt(btn.dataset.page, 10);
+    if (!page || page === state.page) return;
+    state.page = page;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('feed').addEventListener('click', (e) => {
+    if (e.target.classList.contains('summary-toggle')) {
+      const btn = e.target;
+      const text = btn.previousElementSibling;
+      const expanded = text.classList.toggle('expanded');
+      btn.classList.toggle('expanded', expanded);
+      btn.textContent = expanded ? 'Show less' : 'Show more';
+      return;
+    }
+    if (e.target.classList.contains('star-btn')) {
+      const card = e.target.closest('article.entry');
+      if (!card) return;
+      const id = card.dataset.id;
+      const nowStarred = toggleStar(id);
+      e.target.classList.toggle('starred', nowStarred);
+      card.classList.toggle('starred', nowStarred);
+    }
+  });
+
+  document.getElementById('btn-load-older').addEventListener('click', async () => {
+    const all = state.manifest?.months || [];
+    const remaining = all.filter(m => !state.loadedMonths.has(m));
+    if (!remaining.length) return;
+    for (const m of remaining) await loadMonth(m);
+    populateDropdowns();
+    applyFilters();
+    document.getElementById('footer-actions').style.display = 'none';
+  });
+}
+
+function setupInfiniteScroll(allMonths) {
+  let loadingNext = false;
+  const sentinel = document.createElement('div');
+  sentinel.id = 'scroll-sentinel';
+  sentinel.style.height = '1px';
+  document.querySelector('main').appendChild(sentinel);
+
+  const observer = new IntersectionObserver(async (entries) => {
+    if (loadingNext) return;
+    if (!entries[0].isIntersecting) return;
+    const remaining = allMonths.filter(m => !state.loadedMonths.has(m));
+    if (!remaining.length) {
+      observer.disconnect();
+      sentinel.remove();
+      return;
+    }
+    loadingNext = true;
+    const nextMonth = remaining[0];
+    await loadMonth(nextMonth);
+    populateDropdowns();
+    applyFilters();
+    loadingNext = false;
+  }, { rootMargin: '600px 0px' });
+
+  observer.observe(sentinel);
+
+  // Hide manual "Load older" button — replaced by auto-scroll
+  document.getElementById('footer-actions').style.display = 'none';
+}
+
+async function init() {
+  try {
+    // Merge starred from localStorage (instant) + starred.json (cross-device)
+    const local = loadStarredLocal();
+    const remote = await loadStarredRemote();
+    state.starred = new Set([...local, ...remote]);
+    saveStarredLocal();  // backfill localStorage with remote stars
+
+    await loadManifest();
+    const all = state.manifest.months || [];
+    if (all.length === 0) {
+      document.getElementById('feed').innerHTML = '<p>Chưa có dữ liệu — đợi routines chạy lần đầu.</p>';
+      document.getElementById('feed').className = 'empty-state';
+      document.getElementById('stats').textContent = '0 entries';
+      return;
+    }
+    // Lazy infinite scroll: load month by month as user scrolls near bottom.
+    // Start with newest month only.
+    await loadMonth(all[0]);
+    initChoices();
+    initDatePicker();
+    populateDropdowns();
+    bindEvents();
+    applyFilters();
+    setupInfiniteScroll(all);
+  } catch (err) {
+    document.getElementById('feed').innerHTML = `<p>⚠ Lỗi tải dữ liệu.<br><small>${err.message}</small><br><br>Hãy đảm bảo đã chạy <code>start.bat</code> để mở local server thay vì mở file://index.html trực tiếp.</p>`;
+    document.getElementById('feed').className = 'empty-state';
+  }
+}
+
+init();
+
+// Google Translate
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'vi,en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</body>
+</html>

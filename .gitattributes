@@ -1,0 +1,11 @@
+# Reduce merge conflicts when both accounts append to data files
+data/*.json merge=union
+state.json merge=union
+
+# Force LF endings for cross-platform consistency
+*.py text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf

@@ -1,0 +1,346 @@
+{
+  "simon-willison": {
+    "seen_urls": [
+      "https://simonwillison.net/2026/May/5/datasette-llm",
+      "https://simonwillison.net/2026/May/5/llm-echo",
+      "https://simonwillison.net/2026/May/5/john-gruber",
+      "https://simonwillison.net/2026/May/4/granite-41-3b-svg-pelican-gallery",
+      "https://simonwillison.net/2026/May/4/andy-masley",
+      "https://simonwillison.net/2026/May/4/april-newsletter",
+      "https://simonwillison.net/2026/May/4/tre-python-binding",
+      "https://simonwillison.net/2026/May/4/redis-array",
+      "https://simonwillison.net/2026/May/3/anthropic",
+      "https://simonwillison.net/2026/May/2/sightings"
+    ],
+    "last_fetched": "2026-05-05T19:09:29+00:00"
+  },
+  "arxiv-cs-cl": {
+    "seen_urls": [
+      "https://arxiv.org/abs/2605.00847",
+      "https://arxiv.org/abs/2605.00905",
+      "https://arxiv.org/abs/2605.00994",
+      "https://arxiv.org/abs/2605.01006",
+      "https://arxiv.org/abs/2605.01011",
+      "https://arxiv.org/abs/2605.01017",
+      "https://arxiv.org/abs/2605.01034",
+      "https://arxiv.org/abs/2605.01048",
+      "https://arxiv.org/abs/2605.01065",
+      "https://arxiv.org/abs/2605.01073"
+    ],
+    "last_fetched": "2026-05-05T19:09:31+00:00"
+  },
+  "mistral-news": {
+    "seen_urls": [
+      "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5"
+    ],
+    "last_fetched": "2026-05-05T19:09:34+00:00"
+  },
+  "mitchell-hashimoto": {
+    "seen_urls": [
+      "https://mitchellh.com/writing/ghostty-leaving-github",
+      "https://mitchellh.com/writing/simdutf-no-libcxx",
+      "https://mitchellh.com/writing/building-block-economy",
+      "https://mitchellh.com/writing/my-ai-adoption-journey",
+      "https://mitchellh.com/writing/tripwire",
+      "https://mitchellh.com/writing/ghostty-memory-leak-fix",
+      "https://mitchellh.com/writing/ghostty-non-profit"
+    ],
+    "last_fetched": "2026-05-05T19:09:35+00:00"
+  },
+  "sebastian-raschka": {
+    "seen_urls": [
+      "https://magazine.sebastianraschka.com/p/workflow-for-understanding-llms",
+      "https://magazine.sebastianraschka.com/p/components-of-a-coding-agent",
+      "https://magazine.sebastianraschka.com/p/visual-attention-variants",
+      "https://magazine.sebastianraschka.com/p/a-dream-of-spring-for-open-weight",
+      "https://magazine.sebastianraschka.com/p/categories-of-inference-time-scaling",
+      "https://magazine.sebastianraschka.com/p/state-of-llms-2025",
+      "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2",
+      "https://magazine.sebastianraschka.com/p/technical-deepseek"
+    ],
+    "last_fetched": "2026-05-05T19:09:37+00:00"
+  },
+  "eugene-yan": {
+    "seen_urls": [
+      "https://eugeneyan.com//writing/working-with-ai",
+      "https://eugeneyan.com//writing/2025-review",
+      "https://eugeneyan.com//writing/product-evals"
+    ],
+    "last_fetched": "2026-05-05T19:09:39+00:00"
+  },
+  "goon-nguyen": {
+    "seen_urls": [
+      "https://goonnguyen.substack.com/p/huong-dan-xay-dung-second-brain-hieu",
+      "https://goonnguyen.substack.com/p/ai-and-cac-nghe-moi-trong-ky-nguyen",
+      "https://goonnguyen.substack.com/p/claude-opus-47-phan-tich-hanh-vi",
+      "https://goonnguyen.substack.com/p/goclaw-30-mot-buoc-ngoat-lon"
+    ],
+    "last_fetched": "2026-05-05T19:09:40+00:00"
+  },
+  "towards-data-science": {
+    "seen_urls": [
+      "https://towardsdatascience.com/discrete-time-to-event-modeling-predicting-when-something-will-happen",
+      "https://towardsdatascience.com/how-to-make-claude-code-validate-its-own-work",
+      "https://towardsdatascience.com/rag-hallucinates-i-built-a-self-healing-layer-that-fixes-it-in-real-time",
+      "https://towardsdatascience.com/surviving-high-uncertainty-in-logistics-with-marl",
+      "https://towardsdatascience.com/single-agent-vs-multi-agent-when-to-build-a-multi-agent-system",
+      "https://towardsdatascience.com/how-to-build-an-efficient-knowledge-base-for-ai-models",
+      "https://towardsdatascience.com/playing-connect-four-with-deep-q-learning",
+      "https://towardsdatascience.com/how-ai-tools-generate-technical-debt-in-iot-systems-and-what-to-do-about-it",
+      "https://towardsdatascience.com/cspnet-paper-walkthrough-just-better-no-tradeoff",
+      "https://towardsdatascience.com/inference-scaling-test-time-compute-why-reasoning-models-raise-your-compute-bill"
+    ],
+    "last_fetched": "2026-05-05T19:29:16+00:00"
+  },
+  "ml-mastery": {
+    "seen_urls": [
+      "https://machinelearningmastery.com/effective-kv-compression-with-turboquant",
+      "https://machinelearningmastery.com/building-ai-agents-in-python-with-pydantic-ai"
+    ],
+    "last_fetched": "2026-05-05T19:29:17+00:00"
+  },
+  "kdnuggets": {
+    "seen_urls": [
+      "https://www.kdnuggets.com/baptists-and-bootleggers-the-hidden-coalition-behind-data-driven-decisions",
+      "https://www.kdnuggets.com/5-fun-projects-using-claude-code",
+      "https://www.kdnuggets.com/testing-sql-like-a-software-engineer-unit-testing-ci-cd-and-data-quality-automation",
+      "https://www.kdnuggets.com/how-to-deploy-your-first-app-on-fastapi-cloud",
+      "https://www.kdnuggets.com/7-practical-ways-to-reduce-claude-code-token-usage",
+      "https://www.kdnuggets.com/the-robust-data-scientist-winning-with-messy-data-and-pingouin",
+      "https://www.kdnuggets.com/open-weight-text-to-speach-with-voxtral-tts",
+      "https://www.kdnuggets.com/2026/04/zerotomastery/learn-the-most-in-demand-tech-skills-for-free",
+      "https://www.kdnuggets.com/building-agentic-ai-systems-with-microsofts-agent-framework",
+      "https://www.kdnuggets.com/5-powerful-python-decorators-to-build-clean-ai-code"
+    ],
+    "last_fetched": "2026-05-05T19:29:19+00:00"
+  },
+  "marktechpost": {
+    "seen_urls": [
+      "https://www.marktechpost.com/2026/05/05/why-gradient-descent-zigzags-and-how-momentum-fixes-it",
+      "https://www.marktechpost.com/2026/05/05/google-adds-event-driven-webhooks-to-the-gemini-api-eliminating-the-need-for-polling-in-long-running-ai-jobs",
+      "https://www.marktechpost.com/2026/05/04/a-coding-guide-to-survey-bias-correction-using-facebook-research-balance-with-ipw-cbps-ranking-and-post-stratification-methods",
+      "https://www.marktechpost.com/2026/05/04/zyphra-introduces-tensor-and-sequence-parallelism-tsp-a-hardware-aware-training-and-inference-strategy-that-delivers-2-6x-throughput-over-matched-tpsp-baselines",
+      "https://www.marktechpost.com/2026/05/04/how-to-build-an-end-to-end-production-grade-machine-learning-pipeline-with-zenml-including-custom-materializers-metadata-tracking-and-hyperparameter-optimization",
+      "https://www.marktechpost.com/2026/05/04/top-search-and-fetch-apis-for-building-ai-agents-in-2026-tools-tradeoffs-and-free-tiers",
+      "https://www.marktechpost.com/2026/05/03/a-developers-guide-to-systematic-prompting-mastering-negative-constraints-structured-json-outputs-and-multi-hypothesis-verbalized-sampling",
+      "https://www.marktechpost.com/2026/05/03/a-coding-implementation-to-explore-and-analyze-the-tasktrove-dataset-with-streaming-parsing-visualization-and-verifier-detection",
+      "https://www.marktechpost.com/2026/05/03/sakana-ai-introduces-kame-a-tandem-speech-to-speech-architecture-that-injects-llm-knowledge-in-real-time",
+      "https://www.marktechpost.com/2026/05/03/what-is-tokenization-drift-and-how-to-fix-it"
+    ],
+    "last_fetched": "2026-05-05T19:29:24+00:00"
+  },
+  "mit-news-ai": {
+    "seen_urls": [
+      "https://news.mit.edu/2026/beacon-biosignals-maps-brain-during-sleep-0501",
+      "https://news.mit.edu/2026/improving-understanding-language-olivia-honeycutt-0501",
+      "https://news.mit.edu/2026/making-case-curiosity-driven-science",
+      "https://news.mit.edu/2026/smarter-way-to-debias-ai-vision-models-0429",
+      "https://news.mit.edu/2026/mit-ibm-computing-research-lab-launches-0429",
+      "https://news.mit.edu/2026/enabling-privacy-preserving-ai-training-everyday-devices-0429"
+    ],
+    "last_fetched": "2026-05-05T19:29:25+00:00"
+  },
+  "bdtechtalks": {
+    "seen_urls": [
+      "https://bdtechtalks.com/2026/05/04/memory-sparse-attention"
+    ],
+    "last_fetched": "2026-05-05T19:29:26+00:00"
+  },
+  "one-useful-thing": {
+    "seen_urls": [
+      "https://www.oneusefulthing.org/p/sign-of-the-future-gpt-55"
+    ],
+    "last_fetched": "2026-05-05T19:29:27+00:00"
+  },
+  "cassie-kozyrkov": {
+    "seen_urls": [
+      "https://medium.com/data-science-collective/attention-is-all-you-have-bb61ad236152?source=rss-2fccb851bb5e------2",
+      "https://kozyrkov.medium.com/flying-cars-anthropics-mythos-model-leak-meta-s-creepy-surveillance-and-a-355-quintillion-ac4c26322c9c?source=rss-2fccb851bb5e------2",
+      "https://medium.com/swlh/hold-my-beer-im-tokenmaxxing-93d84ec0e770?source=rss-2fccb851bb5e------2",
+      "https://kozyrkov.medium.com/the-worlds-most-powerful-ai-is-here-but-it-s-not-for-you-8e2eb1230d60?source=rss-2fccb851bb5e------2"
+    ],
+    "last_fetched": "2026-05-05T19:29:29+00:00"
+  },
+  "aws-ml": {
+    "seen_urls": [
+      "https://aws.amazon.com/blogs/machine-learning/how-hapag-lloyd-uses-amazon-bedrock-to-transform-customer-feedback-into-actionable-insights",
+      "https://aws.amazon.com/blogs/machine-learning/streamlining-generative-ai-development-with-mlflow-v3-10-on-amazon-sagemaker-ai",
+      "https://aws.amazon.com/blogs/machine-learning/introducing-os-level-actions-in-amazon-bedrock-agentcore-browser",
+      "https://aws.amazon.com/blogs/machine-learning/secure-ai-agents-with-amazon-bedrock-agentcore-identity-on-amazon-ecs",
+      "https://aws.amazon.com/blogs/machine-learning/intelligence-driven-message-defense-and-insights-using-amazon-bedrock",
+      "https://aws.amazon.com/blogs/machine-learning/beyond-bi-how-the-dataset-qa-feature-of-amazon-quick-powers-the-next-generation-of-data-decisions",
+      "https://aws.amazon.com/blogs/machine-learning/introducing-the-agent-quality-loop-agentcore-optimization-now-in-preview",
+      "https://aws.amazon.com/blogs/machine-learning/agent-guided-workflows-to-accelerate-model-customization-in-amazon-sagemaker-ai",
+      "https://aws.amazon.com/blogs/machine-learning/generate-dashboards-from-natural-language-prompts-in-amazon-quick",
+      "https://aws.amazon.com/blogs/machine-learning/from-data-lake-to-ai-ready-analytics-introducing-direct-query-with-s3-tables-in-amazon-quick"
+    ],
+    "last_fetched": "2026-05-05T19:31:37+00:00"
+  },
+  "apple-ml": {
+    "seen_urls": [
+      "https://machinelearning.apple.com/research/portool-policy-optimization",
+      "https://machinelearning.apple.com/research/reinforced-agent-inference-feedback",
+      "https://machinelearning.apple.com/research/starflow-v-video-modeling",
+      "https://machinelearning.apple.com/research/sign-language-annotations",
+      "https://machinelearning.apple.com/updates/apple-at-icassp-2026",
+      "https://machinelearning.apple.com/research/adaptive-thinking",
+      "https://machinelearning.apple.com/research/direct-steering-optimization",
+      "https://machinelearning.apple.com/research/stochastic-kv-routing"
+    ],
+    "last_fetched": "2026-05-05T19:57:36+00:00"
+  },
+  "google-research": {
+    "seen_urls": [
+      "https://research.google/blog/catalyzing-scientific-impact-through-global-partnerships-and-open-resources",
+      "https://research.google/blog/four-ways-google-research-scientists-have-been-using-empirical-research-assistance"
+    ],
+    "last_fetched": "2026-05-05T19:31:40+00:00"
+  },
+  "towards-ai": {
+    "seen_urls": [
+      "https://pub.towardsai.net/i-ran-a-637mb-llm-on-my-base-macbook-air-and-now-im-questioning-everything-cd78287d0ccc?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/what-is-claudes-agentic-operating-system-48ec4834e2cc?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/tai-203-openai-anthropic-and-wall-street-race-to-build-the-ai-deployment-layer-520def432288?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/agents-as-tools-vs-handoffs-understanding-the-two-patterns-behind-modern-ai-systems-6a3b7f55b157?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/you-are-using-claude-code-at-20-of-its-power-here-is-the-other-80-23679769ea32?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/i-stopped-defaulting-to-gpt-a-2026-decision-tree-for-9-llm-providers-claude-won-4-chinese-won-3-50c8151632a9?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/i-built-a-rag-system-at-unilever-here-is-what-i-would-do-differently-a97b14243730?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/vector-search-done-right-best-practices-qwen3-dimension-control-and-why-reranking-is-e021e18be13c?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/your-rag-treats-a-3-year-old-doc-the-same-as-yesterdays-here-s-how-to-fix-it-0be24234915d?source=rss----98111c9905da---4",
+      "https://pub.towardsai.net/your-rag-agent-forgets-everything-after-one-message-heres-how-i-fixed-it-with-databricks-2f0f80466b4f?source=rss----98111c9905da---4"
+    ],
+    "last_fetched": "2026-05-05T19:31:42+00:00"
+  },
+  "analytics-vidhya": {
+    "seen_urls": [
+      "https://www.analyticsvidhya.com/blog/2026/05/open-source-libraries-to-fine-tune-llm-locally",
+      "https://www.analyticsvidhya.com/blog/2026/05/ml-intern-from-prompt-to-a-shipped-hugging-face-model",
+      "https://www.analyticsvidhya.com/blog/2026/05/solved-agentic-ai-projects-with-github-links",
+      "https://www.analyticsvidhya.com/blog/2026/05/how-people-are-figuring-out-life-with-claude",
+      "https://www.analyticsvidhya.com/blog/2026/05/mempalace-explained",
+      "https://www.analyticsvidhya.com/blog/2026/05/grok-voice-think-fast-1-0",
+      "https://www.analyticsvidhya.com/blog/2026/04/compressing-lstm-models-for-retail-edge-deployment",
+      "https://www.analyticsvidhya.com/blog/2026/04/mcp-vs-agent-skills"
+    ],
+    "last_fetched": "2026-05-05T19:31:43+00:00"
+  },
+  "alignment-forum": {
+    "seen_urls": [
+      "https://www.alignmentforum.org/posts/eAQZaiC3PcBhS4HjM/linkpost-interpreting-language-model-parameters",
+      "https://www.alignmentforum.org/posts/QpgmEhBvJQxAfFMP2/motivated-reasoning-confirmation-bias-and-ai-risk-theory",
+      "https://www.alignmentforum.org/posts/eeFFpKCDWE9gjfzsk/exploration-hacking-can-llms-learn-to-resist-rl-training-2",
+      "https://www.alignmentforum.org/posts/9YCJZBtqr3FYL8rDp/risk-from-fitness-seeking-ais-mechanisms-and-mitigations",
+      "https://www.alignmentforum.org/posts/LByP4qsF8a4g7Pz3p/research-sabotage-in-ml-codebases"
+    ],
+    "last_fetched": "2026-05-05T19:57:32+00:00"
+  },
+  "deepmind-blog": {
+    "seen_urls": [
+      "https://deepmind.google/blog/ai-co-clinician"
+    ],
+    "last_fetched": "2026-05-05T19:57:40+00:00"
+  },
+  "huggingface-blog": {
+    "seen_urls": [
+      "https://huggingface.co/blog/evaleval/eval-costs-bottleneck",
+      "https://huggingface.co/blog/ibm-granite/granite-4-1",
+      "https://huggingface.co/blog/inference-providers-deepinfra"
+    ],
+    "last_fetched": "2026-05-05T19:57:45+00:00"
+  },
+  "karpathy-blog": {
+    "seen_urls": [
+      "http://karpathy.github.io/2026/02/12/microgpt"
+    ],
+    "last_fetched": "2026-05-05T19:57:47+00:00"
+  },
+  "last-week-in-ai": {
+    "seen_urls": [
+      "https://lastweekin.ai/p/last-week-in-ai-340-openai-vs-musk",
+      "https://lastweekin.ai/p/lwiai-podcast-243-gpt-55-deepseek",
+      "https://lastweekin.ai/p/lwiai-podcast-242-chatgpt-images"
+    ],
+    "last_fetched": "2026-05-05T19:57:49+00:00"
+  },
+  "latent-space": {
+    "seen_urls": [
+      "https://www.latent.space/p/ainews-the-other-vs-the-utility",
+      "https://www.latent.space/p/ainews-ai-engineer-worlds-fair-autoresearch",
+      "https://www.latent.space/p/ainews-agents-for-everything-else",
+      "https://www.latent.space/p/ainews-the-inference-inflection",
+      "https://www.latent.space/p/ainews-not-much-happened-today"
+    ],
+    "last_fetched": "2026-05-05T19:57:50+00:00"
+  },
+  "lex-fridman": {
+    "seen_urls": [
+      "https://lexfridman.com/lars-brownworth",
+      "https://lexfridman.com/lars-brownworth-transcript"
+    ],
+    "last_fetched": "2026-05-05T19:58:15+00:00"
+  },
+  "ms-research": {
+    "seen_urls": [
+      "https://www.microsoft.com/en-us/research/blog/microsoft-at-nsdi-2026-advances-in-large-scale-networked-systems",
+      "https://www.microsoft.com/en-us/research/blog/red-teaming-a-network-of-agents-understanding-what-breaks-when-ai-agents-interact-at-scale"
+    ],
+    "last_fetched": "2026-05-05T19:58:22+00:00"
+  },
+  "nvidia-ai": {
+    "seen_urls": [
+      "https://blogs.nvidia.com/blog/servicenow-autonomous-ai-agents-enterprises",
+      "https://blogs.nvidia.com/blog/what-openclaw-agents-mean-for-every-organization",
+      "https://blogs.nvidia.com/blog/geforce-now-thursday-may-2026-games-list"
+    ],
+    "last_fetched": "2026-05-05T19:58:23+00:00"
+  },
+  "techcrunch-ai": {
+    "seen_urls": [
+      "https://techcrunch.com/2026/05/05/pennsylvania-sues-character-ai-after-a-chatbot-allegedly-posed-as-a-doctor",
+      "https://techcrunch.com/2026/05/05/openai-releases-gpt-5-5-instant-a-new-default-model-for-chatgpt",
+      "https://techcrunch.com/2026/05/05/paypal-says-its-becoming-a-technology-company-again-that-means-ai",
+      "https://techcrunch.com/2026/05/05/etsy-launches-its-app-within-chatgpt-as-it-continues-its-ai-push",
+      "https://techcrunch.com/2026/05/05/meta-will-use-ai-to-analyze-height-and-bone-structure-to-identify-if-users-are-underage",
+      "https://techcrunch.com/2026/05/05/elevenlabs-lists-blackrock-jamie-foxx-and-eva-longoria-as-new-investors",
+      "https://techcrunch.com/2026/05/05/copilotkit-raises-27m-to-help-devs-deploy-app-native-ai-agents",
+      "https://techcrunch.com/2026/05/05/4-days-left-get-50-off-a-second-techcrunch-disrupt-2026-pass-to-make-more-deals-faster",
+      "https://techcrunch.com/2026/05/05/indias-first-genai-unicorn-shifts-to-cloud-services-as-ai-model-ambitions-face-reality",
+      "https://techcrunch.com/2026/05/04/as-workers-worry-about-ai-nvidias-jensen-huang-says-ai-is-creating-an-enormous-number-of-jobs"
+    ],
+    "last_fetched": "2026-05-05T19:58:26+00:00"
+  },
+  "theverge-ai": {
+    "seen_urls": [
+      "https://www.theverge.com/tech/924515/apple-intelligence-third-party-chatbot-extensions-ios-27",
+      "https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit",
+      "https://www.theverge.com/ai-artificial-intelligence/924225/openai-chatgpt-default-model-gpt-5-5-instant",
+      "https://www.theverge.com/tech/924230/meta-publishers-lawsuit-ai-copyright",
+      "https://www.theverge.com/ai-artificial-intelligence/924063/openai-phone-rumors-2027-ming-chi-kuo",
+      "https://www.theverge.com/ai-artificial-intelligence/924017/google-microsoft-xai-government-review",
+      "https://www.theverge.com/podcast/923974/ai-car-design-codex-vergecast",
+      "https://www.theverge.com/ai-artificial-intelligence/923961/security-researchers-mindgard-gaslit-claude-forbidden-information",
+      "https://www.theverge.com/ai-artificial-intelligence/923518/musk-altman-trial-openai-demis-hassabis-google-deepmind",
+      "https://www.theverge.com/tech/923918/google-deepmind-union-bid-ai-military-israel"
+    ],
+    "last_fetched": "2026-05-05T19:58:30+00:00"
+  },
+  "tldr-ai": {
+    "seen_urls": [
+      "https://tldr.tech/ai/2026-05-05",
+      "https://tldr.tech/ai/2026-05-04"
+    ],
+    "last_fetched": "2026-05-05T19:58:31+00:00"
+  },
+  "venturebeat-ai": {
+    "seen_urls": [
+      "https://venturebeat.com/technology/openai-turns-its-sold-out-gpt-5-5-party-into-a-monthlong-codex-giveaway-for-8-000-developers",
+      "https://venturebeat.com/orchestration/inside-amexs-agentic-commerce-stack-how-intent-contracts-and-single-use-tokens-enforce-ai-transactions",
+      "https://venturebeat.com/technology/microsoft-takes-agent-365-out-of-preview-as-shadow-ai-becomes-an-enterprise-threat",
+      "https://venturebeat.com/data/the-rag-era-is-ending-for-agentic-ai-a-new-compilation-stage-knowledge-layer-is-what-comes-next",
+      "https://venturebeat.com/orchestration/salesforce-launches-agentforce-operations-to-fix-the-workflows-breaking-enterprise-ai",
+      "https://venturebeat.com/security/mcp-stdio-flaw-200000-ai-agent-servers-exposed-ox-security-audit",
+      "https://venturebeat.com/infrastructure/the-ai-scaffolding-layer-is-collapsing-llamaindexs-ceo-explains-what-survives"
+    ],
+    "last_fetched": "2026-05-05T19:58:32+00:00"
+  }
+}

@@ -1,0 +1,944 @@
+{
+  "version": 1,
+  "updated": "2026-05-06",
+  "sources": {
+    "anthropic-news": {
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news",
+      "feed_url": null,
+      "bucket": "lab-official",
+      "quality": "corporate-blog",
+      "frequency": 3,
+      "preferred_days": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "openai-blog": {
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/news/",
+      "feed_url": "https://openai.com/blog/rss.xml",
+      "bucket": "lab-official",
+      "quality": "corporate-blog",
+      "frequency": 3,
+      "preferred_days": [
+        "mon",
+        "thu",
+        "sat"
+      ]
+    },
+    "deepmind-blog": {
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/discover/blog/",
+      "feed_url": "https://deepmind.google/blog/rss.xml",
+      "bucket": "lab-official",
+      "quality": "lab-official",
+      "frequency": 1,
+      "preferred_days": [
+        "tue",
+        "fri"
+      ]
+    },
+    "mistral-news": {
+      "name": "Mistral AI News",
+      "url": "https://mistral.ai/news",
+      "feed_url": null,
+      "bucket": "lab-official",
+      "quality": "corporate-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "tue",
+        "sun"
+      ]
+    },
+    "cohere-blog": {
+      "name": "Cohere Blog",
+      "url": "https://cohere.com/blog",
+      "feed_url": null,
+      "bucket": "lab-official",
+      "quality": "corporate-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "wed",
+        "sun"
+      ]
+    },
+    "meta-fair": {
+      "name": "Meta AI / FAIR",
+      "url": "https://ai.meta.com/research/",
+      "feed_url": null,
+      "bucket": "lab-official",
+      "quality": "lab-official",
+      "frequency": 1,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "ms-research": {
+      "name": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/",
+      "feed_url": "https://www.microsoft.com/en-us/research/feed/",
+      "bucket": "lab-official",
+      "quality": "lab-official",
+      "frequency": 1,
+      "preferred_days": [
+        "fri"
+      ]
+    },
+    "together-ai": {
+      "name": "Together AI Blog",
+      "url": "https://www.together.ai/blog",
+      "feed_url": null,
+      "bucket": "lab-official",
+      "quality": "corporate-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "sat"
+      ]
+    },
+    "arxiv-cs-ai": {
+      "name": "arXiv cs.AI",
+      "url": "https://arxiv.org/list/cs.AI/recent",
+      "feed_url": "https://rss.arxiv.org/rss/cs.AI",
+      "bucket": "academic",
+      "quality": "preprint",
+      "frequency": 3,
+      "preferred_days": [
+        "mon",
+        "wed",
+        "fri"
+      ],
+      "recency_hours": 48
+    },
+    "arxiv-cs-cl": {
+      "name": "arXiv cs.CL",
+      "url": "https://arxiv.org/list/cs.CL/recent",
+      "feed_url": "https://rss.arxiv.org/rss/cs.CL",
+      "bucket": "academic",
+      "quality": "preprint",
+      "frequency": 3,
+      "preferred_days": [
+        "tue"
+      ],
+      "recency_hours": 48
+    },
+    "arxiv-cs-lg": {
+      "name": "arXiv cs.LG",
+      "url": "https://arxiv.org/list/cs.LG/recent",
+      "feed_url": "https://rss.arxiv.org/rss/cs.LG",
+      "bucket": "academic",
+      "quality": "preprint",
+      "frequency": 3,
+      "preferred_days": [
+        "thu"
+      ],
+      "recency_hours": 48
+    },
+    "alphaxiv": {
+      "name": "alphaXiv (curated arXiv)",
+      "url": "https://www.alphaxiv.org/explore",
+      "feed_url": null,
+      "bucket": "academic",
+      "quality": "aggregator",
+      "frequency": 2,
+      "preferred_days": [
+        "tue",
+        "sun"
+      ]
+    },
+    "papers-with-code": {
+      "name": "Papers with Code",
+      "url": "https://paperswithcode.com/latest",
+      "feed_url": null,
+      "bucket": "academic",
+      "quality": "aggregator",
+      "frequency": 1,
+      "preferred_days": [
+        "wed"
+      ]
+    },
+    "hf-daily-papers": {
+      "name": "Hugging Face Daily Papers",
+      "url": "https://huggingface.co/papers",
+      "feed_url": "https://papers.takara.ai/api/feed",
+      "bucket": "academic",
+      "quality": "aggregator",
+      "frequency": 3,
+      "preferred_days": [
+        "mon",
+        "thu"
+      ],
+      "recency_hours": 48
+    },
+    "bair-blog": {
+      "name": "Berkeley BAIR Blog",
+      "url": "https://bair.berkeley.edu/blog/",
+      "feed_url": "https://bair.berkeley.edu/blog/feed.xml",
+      "bucket": "academic",
+      "quality": "lab-official",
+      "frequency": "monthly",
+      "preferred_days": [
+        "sat"
+      ]
+    },
+    "the-gradient": {
+      "name": "The Gradient",
+      "url": "https://thegradient.pub/",
+      "feed_url": "https://thegradient.pub/rss/",
+      "bucket": "academic",
+      "quality": "curated-newsletter",
+      "frequency": "quarterly",
+      "preferred_days": [
+        "sun"
+      ]
+    },
+    "import-ai": {
+      "name": "Import AI (Jack Clark)",
+      "url": "https://importai.substack.com/",
+      "feed_url": "https://importai.substack.com/feed",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "the-batch": {
+      "name": "The Batch (Andrew Ng)",
+      "url": "https://www.deeplearning.ai/the-batch/",
+      "feed_url": null,
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "fri"
+      ]
+    },
+    "mit-tech-review": {
+      "name": "MIT Tech Review: The Algorithm",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence/",
+      "feed_url": "https://www.technologyreview.com/feed/",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "tldr-ai": {
+      "name": "TLDR AI",
+      "url": "https://tldr.tech/ai",
+      "feed_url": "https://tldr.tech/api/rss/ai",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 2,
+      "preferred_days": [
+        "mon",
+        "fri"
+      ],
+      "recency_hours": 48
+    },
+    "bens-bites": {
+      "name": "Ben's Bites",
+      "url": "https://www.bensbites.com",
+      "feed_url": null,
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "wed"
+      ],
+      "recency_hours": 48
+    },
+    "simon-willison": {
+      "name": "Simon Willison's Blog",
+      "url": "https://simonwillison.net/",
+      "feed_url": "https://simonwillison.net/atom/everything/",
+      "bucket": "engineering",
+      "quality": "personal-blog",
+      "frequency": 2,
+      "preferred_days": [
+        "mon",
+        "wed"
+      ],
+      "recency_hours": 168
+    },
+    "sebastian-raschka": {
+      "name": "Sebastian Raschka's Ahead of AI",
+      "url": "https://magazine.sebastianraschka.com/",
+      "feed_url": "https://magazine.sebastianraschka.com/feed",
+      "bucket": "engineering",
+      "quality": "personal-blog",
+      "frequency": "monthly",
+      "preferred_days": [
+        "sat"
+      ],
+      "recency_hours": 4320
+    },
+    "eugene-yan": {
+      "name": "Eugene Yan's Blog",
+      "url": "https://eugeneyan.com/writing/",
+      "feed_url": "https://eugeneyan.com/rss/",
+      "bucket": "engineering",
+      "quality": "personal-blog",
+      "frequency": "monthly",
+      "preferred_days": [
+        "tue"
+      ],
+      "recency_hours": 4320
+    },
+    "hamel-husain": {
+      "name": "Hamel Husain's Blog",
+      "url": "https://hamel.dev/",
+      "feed_url": "https://hamel.dev/index.xml",
+      "bucket": "engineering",
+      "quality": "personal-blog",
+      "frequency": "monthly",
+      "preferred_days": [
+        "wed"
+      ],
+      "recency_hours": 4320
+    },
+    "huggingface-blog": {
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog",
+      "feed_url": "https://huggingface.co/blog/feed.xml",
+      "bucket": "engineering",
+      "quality": "vendor-blog",
+      "frequency": 2,
+      "preferred_days": [
+        "mon",
+        "fri"
+      ]
+    },
+    "latent-space": {
+      "name": "Latent Space",
+      "url": "https://www.latent.space/",
+      "feed_url": "https://www.latent.space/feed",
+      "bucket": "engineering",
+      "quality": "curated-newsletter",
+      "frequency": 2,
+      "preferred_days": [
+        "tue",
+        "sun"
+      ]
+    },
+    "addy-osmani": {
+      "name": "Addy Osmani Blog",
+      "url": "https://addyosmani.com/blog/",
+      "feed_url": "https://addyosmani.com/feed/",
+      "bucket": "harness",
+      "quality": "personal-blog",
+      "frequency": "quarterly",
+      "preferred_days": [
+        "sun"
+      ],
+      "recency_hours": 4320
+    },
+    "mitchell-hashimoto": {
+      "name": "Mitchell Hashimoto",
+      "url": "https://mitchellh.com/writing",
+      "feed_url": "https://mitchellh.com/feed.xml",
+      "bucket": "harness",
+      "quality": "personal-blog",
+      "frequency": "monthly",
+      "preferred_days": [
+        "sat"
+      ],
+      "recency_hours": 4320
+    },
+    "karpathy-blog": {
+      "name": "Karpathy Blog & Gists",
+      "url": "https://karpathy.ai/",
+      "feed_url": "https://karpathy.github.io/feed.xml",
+      "bucket": "harness",
+      "quality": "personal-blog",
+      "frequency": "quarterly",
+      "preferred_days": [
+        "sat"
+      ],
+      "recency_hours": 8760
+    },
+    "pete-koomen": {
+      "name": "Pete Koomen",
+      "url": "https://www.petekoomen.com/",
+      "feed_url": null,
+      "bucket": "harness",
+      "quality": "personal-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ],
+      "recency_hours": 4320
+    },
+    "a16z-ai": {
+      "name": "a16z AI",
+      "url": "https://a16z.com/ai/",
+      "feed_url": null,
+      "bucket": "business",
+      "quality": "corporate-blog",
+      "frequency": 3,
+      "preferred_days": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "lenny-newsletter": {
+      "name": "Lenny's Newsletter (How I AI)",
+      "url": "https://www.lennysnewsletter.com/s/how-i-ai",
+      "feed_url": null,
+      "bucket": "business",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "tue"
+      ]
+    },
+    "theory-vc": {
+      "name": "Theory VC",
+      "url": "https://theoryvc.com/blog-posts/",
+      "feed_url": null,
+      "bucket": "business",
+      "quality": "corporate-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "tue"
+      ]
+    },
+    "sequoia-ai": {
+      "name": "Sequoia AI Perspectives",
+      "url": "https://www.sequoiacap.com/perspectives/",
+      "feed_url": null,
+      "bucket": "business",
+      "quality": "corporate-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "lesswrong-ai": {
+      "name": "LessWrong AI Tag",
+      "url": "https://www.lesswrong.com/posts?tags=AI",
+      "feed_url": "https://www.lesswrong.com/feed.xml?view=curated",
+      "bucket": "safety",
+      "quality": "community-forum",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ]
+    },
+    "alignment-forum": {
+      "name": "Alignment Forum",
+      "url": "https://www.alignmentforum.org/",
+      "feed_url": "https://www.alignmentforum.org/feed.xml",
+      "bucket": "safety",
+      "quality": "community-forum",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ]
+    },
+    "fli-safety": {
+      "name": "Future of Life Institute",
+      "url": "https://futureoflife.org/category/ai/",
+      "feed_url": null,
+      "bucket": "safety",
+      "quality": "lab-official",
+      "frequency": 1,
+      "preferred_days": [
+        "sat"
+      ],
+      "recency_hours": 720
+    },
+    "fpt-ai": {
+      "name": "FPT.AI Publications",
+      "url": "https://fpt.ai/blog",
+      "feed_url": null,
+      "bucket": "vietnam",
+      "quality": "corporate-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ],
+      "recency_hours": 720
+    },
+    "vinai": {
+      "name": "VinAI Research",
+      "url": "https://www.vinai.io/news/",
+      "feed_url": null,
+      "bucket": "vietnam",
+      "quality": "lab-official",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ],
+      "recency_hours": 720
+    },
+    "good-ai-list": {
+      "name": "Good AI List (trending repos)",
+      "url": "https://goodailist.com/repos",
+      "feed_url": null,
+      "bucket": "engineering",
+      "quality": "aggregator",
+      "frequency": 1,
+      "preferred_days": [
+        "sat"
+      ],
+      "recency_hours": 168
+    },
+    "goon-nguyen": {
+      "name": "Goon Nguyễn (Substack)",
+      "url": "https://goonnguyen.substack.com/",
+      "feed_url": "https://goonnguyen.substack.com/feed",
+      "bucket": "vietnam",
+      "quality": "personal-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ],
+      "recency_hours": 720
+    },
+    "ml-mastery": {
+      "name": "Machine Learning Mastery",
+      "url": "https://machinelearningmastery.com/blog/",
+      "feed_url": "https://machinelearningmastery.com/blog/feed/",
+      "bucket": "engineering",
+      "quality": "personal-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "wed"
+      ]
+    },
+    "kdnuggets": {
+      "name": "KDnuggets",
+      "url": "https://www.kdnuggets.com/",
+      "feed_url": "https://www.kdnuggets.com/feed",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "tue"
+      ]
+    },
+    "marktechpost": {
+      "name": "MarkTechPost",
+      "url": "https://www.marktechpost.com/",
+      "feed_url": "https://www.marktechpost.com/feed",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "mon",
+        "wed"
+      ]
+    },
+    "mit-news-ai": {
+      "name": "MIT News - AI",
+      "url": "https://news.mit.edu/topic/artificial-intelligence2",
+      "feed_url": "https://news.mit.edu/topic/mitartificial-intelligence2-rss.xml",
+      "bucket": "academic",
+      "quality": "lab-official",
+      "frequency": 2,
+      "preferred_days": [
+        "fri"
+      ]
+    },
+    "bdtechtalks": {
+      "name": "Ben Dickson's TechTalks",
+      "url": "https://bdtechtalks.com/",
+      "feed_url": "https://bdtechtalks.com/feed/",
+      "bucket": "commentary",
+      "quality": "personal-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "one-useful-thing": {
+      "name": "One Useful Thing (Ethan Mollick)",
+      "url": "https://www.oneusefulthing.org/",
+      "feed_url": "https://www.oneusefulthing.org/feed",
+      "bucket": "commentary",
+      "quality": "personal-blog",
+      "frequency": "monthly",
+      "preferred_days": [
+        "sat"
+      ],
+      "recency_hours": 720
+    },
+    "cerebras": {
+      "name": "Cerebras Blog",
+      "url": "https://www.cerebras.ai/blog",
+      "feed_url": null,
+      "bucket": "lab-official",
+      "quality": "vendor-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "sat"
+      ]
+    },
+    "aws-ml": {
+      "name": "AWS Machine Learning Blog",
+      "url": "https://aws.amazon.com/blogs/machine-learning/",
+      "feed_url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "bucket": "lab-official",
+      "quality": "vendor-blog",
+      "frequency": 2,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "apple-ml": {
+      "name": "Apple Machine Learning Research",
+      "url": "https://machinelearning.apple.com/",
+      "feed_url": "https://machinelearning.apple.com/rss.xml",
+      "bucket": "lab-official",
+      "quality": "lab-official",
+      "frequency": 1,
+      "preferred_days": [
+        "fri"
+      ]
+    },
+    "google-research": {
+      "name": "Google Research Blog",
+      "url": "https://research.google/blog/",
+      "feed_url": "https://research.google/blog/rss/",
+      "bucket": "lab-official",
+      "quality": "lab-official",
+      "frequency": 2,
+      "preferred_days": [
+        "tue",
+        "fri"
+      ]
+    },
+    "analytics-vidhya": {
+      "name": "Analytics Vidhya",
+      "url": "https://www.analyticsvidhya.com/blog/",
+      "feed_url": "https://www.analyticsvidhya.com/feed/",
+      "bucket": "engineering",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "sat"
+      ]
+    },
+    "nvidia-ai": {
+      "name": "NVIDIA AI Blog",
+      "url": "https://blogs.nvidia.com/blog/category/deep-learning/",
+      "feed_url": "https://blogs.nvidia.com/feed/",
+      "bucket": "lab-official",
+      "quality": "vendor-blog",
+      "frequency": 2,
+      "preferred_days": [
+        "wed"
+      ]
+    },
+    "salesforce-ai": {
+      "name": "Salesforce AI Research",
+      "url": "https://www.salesforceairesearch.com/",
+      "feed_url": "https://www.salesforce.com/news/feed/",
+      "bucket": "lab-official",
+      "quality": "vendor-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "venturebeat-ai": {
+      "name": "VentureBeat AI",
+      "url": "https://venturebeat.com/category/ai/",
+      "feed_url": "https://venturebeat.com/feed",
+      "bucket": "business",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "mon",
+        "thu"
+      ]
+    },
+    "wired-ai": {
+      "name": "Wired AI",
+      "url": "https://www.wired.com/tag/artificial-intelligence/",
+      "feed_url": "https://www.wired.com/feed/tag/ai/latest/rss",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "wed"
+      ]
+    },
+    "techcrunch-ai": {
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/",
+      "feed_url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "bucket": "business",
+      "quality": "curated-newsletter",
+      "frequency": 2,
+      "preferred_days": [
+        "tue",
+        "fri"
+      ]
+    },
+    "theverge-ai": {
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "feed_url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "mon",
+        "fri"
+      ]
+    },
+    "last-week-in-ai": {
+      "name": "Last Week in AI",
+      "url": "https://lastweekin.ai/",
+      "feed_url": "https://lastweekin.ai/feed",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "mon"
+      ]
+    },
+    "neuron": {
+      "name": "The Neuron",
+      "url": "https://www.theneuron.ai/",
+      "feed_url": "https://www.theneuron.ai/rss.xml",
+      "bucket": "commentary",
+      "quality": "curated-newsletter",
+      "frequency": 1,
+      "preferred_days": [
+        "wed",
+        "fri"
+      ]
+    },
+    "langchain": {
+      "name": "LangChain Blog",
+      "url": "https://blog.langchain.dev/",
+      "feed_url": "https://blog.langchain.dev/rss/",
+      "bucket": "engineering",
+      "quality": "vendor-blog",
+      "frequency": "quarterly",
+      "preferred_days": [
+        "thu"
+      ]
+    },
+    "lex-fridman": {
+      "name": "Lex Fridman Podcast",
+      "url": "https://lexfridman.com/podcast/",
+      "feed_url": "https://lexfridman.com/feed/",
+      "bucket": "commentary",
+      "quality": "personal-blog",
+      "frequency": 1,
+      "preferred_days": [
+        "sun"
+      ],
+      "recency_hours": 720
+    }
+  },
+  "schedule": {
+    "A": {
+      "mon": {
+        "slot1": [
+          "anthropic-news",
+          "openai-blog"
+        ],
+        "slot2": [
+          "simon-willison",
+          "eugene-yan"
+        ],
+        "slot3": [
+          "a16z-ai",
+          "venturebeat-ai"
+        ]
+      },
+      "tue": {
+        "slot1": [
+          "deepmind-blog",
+          "mistral-news",
+          "google-research"
+        ],
+        "slot2": [
+          "latent-space"
+        ],
+        "slot3": [
+          "lenny-newsletter",
+          "techcrunch-ai"
+        ]
+      },
+      "wed": {
+        "slot1": [
+          "anthropic-news",
+          "cohere-blog"
+        ],
+        "slot2": [
+          "simon-willison",
+          "ml-mastery"
+        ],
+        "slot3": [
+          "a16z-ai",
+          "wired-ai"
+        ]
+      },
+      "thu": {
+        "slot1": [
+          "openai-blog",
+          "meta-fair",
+          "aws-ml"
+        ],
+        "slot2": [
+          "hamel-husain",
+          "bdtechtalks"
+        ],
+        "slot3": [
+          "sequoia-ai",
+          "salesforce-ai"
+        ]
+      },
+      "fri": {
+        "slot1": [
+          "anthropic-news",
+          "deepmind-blog",
+          "apple-ml",
+          "google-research"
+        ],
+        "slot2": [
+          "huggingface-blog"
+        ],
+        "slot3": [
+          "a16z-ai",
+          "theverge-ai"
+        ]
+      },
+      "sat": {
+        "slot1": [
+          "openai-blog",
+          "good-ai-list",
+          "cerebras"
+        ],
+        "slot2": [
+          "sebastian-raschka",
+          "one-useful-thing"
+        ],
+        "slot3": [
+          "karpathy-blog"
+        ]
+      },
+      "sun": {
+        "slot1": [
+          "cohere-blog",
+          "mistral-news"
+        ],
+        "slot2": [
+          "latent-space"
+        ],
+        "slot3": [
+          "pete-koomen"
+        ]
+      }
+    },
+    "B": {
+      "mon": {
+        "slot1": [
+          "arxiv-cs-ai",
+          "hf-daily-papers"
+        ],
+        "slot2": [
+          "huggingface-blog",
+          "last-week-in-ai"
+        ],
+        "slot3": [
+          "tldr-ai",
+          "marktechpost"
+        ]
+      },
+      "tue": {
+        "slot1": [
+          "arxiv-cs-cl",
+          "alphaxiv"
+        ],
+        "slot2": [
+          "eugene-yan",
+          "kdnuggets"
+        ],
+        "slot3": [
+          "theory-vc"
+        ]
+      },
+      "wed": {
+        "slot1": [
+          "arxiv-cs-ai",
+          "papers-with-code"
+        ],
+        "slot2": [
+          "hamel-husain"
+        ],
+        "slot3": [
+          "bens-bites",
+          "neuron"
+        ]
+      },
+      "thu": {
+        "slot1": [
+          "arxiv-cs-lg",
+          "hf-daily-papers"
+        ],
+        "slot2": [
+          "import-ai",
+          "langchain"
+        ],
+        "slot3": [
+          "mit-tech-review"
+        ]
+      },
+      "fri": {
+        "slot1": [
+          "arxiv-cs-ai",
+          "ms-research",
+          "mit-news-ai"
+        ],
+        "slot2": [
+          "the-batch",
+          "nvidia-ai"
+        ],
+        "slot3": [
+          "tldr-ai"
+        ]
+      },
+      "sat": {
+        "slot1": [
+          "alphaxiv",
+          "bair-blog",
+          "analytics-vidhya"
+        ],
+        "slot2": [
+          "sebastian-raschka"
+        ],
+        "slot3": [
+          "mitchell-hashimoto"
+        ]
+      },
+      "sun": {
+        "slot1": [
+          "the-gradient",
+          "bair-blog"
+        ],
+        "slot2": [
+          "lesswrong-ai",
+          "alignment-forum",
+          "lex-fridman"
+        ],
+        "slot3": [
+          "addy-osmani",
+          "fpt-ai",
+          "vinai",
+          "goon-nguyen"
+        ]
+      }
+    }
+  }
+}
