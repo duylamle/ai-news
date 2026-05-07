@@ -172,9 +172,14 @@
       "https://aws.amazon.com/blogs/machine-learning/introducing-the-agent-quality-loop-agentcore-optimization-now-in-preview",
       "https://aws.amazon.com/blogs/machine-learning/agent-guided-workflows-to-accelerate-model-customization-in-amazon-sagemaker-ai",
       "https://aws.amazon.com/blogs/machine-learning/generate-dashboards-from-natural-language-prompts-in-amazon-quick",
-      "https://aws.amazon.com/blogs/machine-learning/from-data-lake-to-ai-ready-analytics-introducing-direct-query-with-s3-tables-in-amazon-quick"
+      "https://aws.amazon.com/blogs/machine-learning/from-data-lake-to-ai-ready-analytics-introducing-direct-query-with-s3-tables-in-amazon-quick",
+      "https://aws.amazon.com/blogs/machine-learning/cost-effective-deployment-of-vision-language-models-for-pet-behavior-detection-on-aws-inferentia2",
+      "https://aws.amazon.com/blogs/machine-learning/introducing-agent-quality-optimization-in-agentcore-now-in-preview",
+      "https://aws.amazon.com/blogs/machine-learning/introducing-dataset-qa-expanding-natural-language-querying-for-structured-datasets-in-amazon-quick",
+      "https://aws.amazon.com/blogs/machine-learning/capacity-aware-inference-automatic-instance-fallback-for-sagemaker-ai-endpoints",
+      "https://aws.amazon.com/blogs/machine-learning/aws-transform-now-automates-bi-migration-to-amazon-quick-in-days"
     ],
-    "last_fetched": "2026-05-05T19:31:37+00:00"
+    "last_fetched": "2026-05-07T11:08:19+00:00"
   },
   "apple-ml": {
     "seen_urls": [
@@ -342,5 +347,95 @@
       "https://venturebeat.com/infrastructure/the-ai-scaffolding-layer-is-collapsing-llamaindexs-ceo-explains-what-survives"
     ],
     "last_fetched": "2026-05-05T19:58:32+00:00"
+  },
+  "arxiv-cs-lg": {
+    "seen_urls": [
+      "https://arxiv.org/abs/2605.04054",
+      "https://arxiv.org/abs/2605.04055",
+      "https://arxiv.org/abs/2605.04056",
+      "https://arxiv.org/abs/2605.04057",
+      "https://arxiv.org/abs/2605.04058",
+      "https://arxiv.org/abs/2605.04059",
+      "https://arxiv.org/abs/2605.04060",
+      "https://arxiv.org/abs/2605.04061",
+      "https://arxiv.org/abs/2605.04062",
+      "https://arxiv.org/abs/2605.04063",
+      "https://arxiv.org/abs/2605.04064",
+      "https://arxiv.org/abs/2605.04068",
+      "https://arxiv.org/abs/2605.04069",
+      "https://arxiv.org/abs/2605.04071",
+      "https://arxiv.org/abs/2605.04072",
+      "https://arxiv.org/abs/2605.04073",
+      "https://arxiv.org/abs/2605.04074",
+      "https://arxiv.org/abs/2605.04075",
+      "https://arxiv.org/abs/2605.04076",
+      "https://arxiv.org/abs/2605.04077",
+      "https://arxiv.org/abs/2605.04078",
+      "https://arxiv.org/abs/2605.04079",
+      "https://arxiv.org/abs/2605.04081",
+      "https://arxiv.org/abs/2605.04082",
+      "https://arxiv.org/abs/2605.04083",
+      "https://arxiv.org/abs/2605.04084",
+      "https://arxiv.org/abs/2605.04103",
+      "https://arxiv.org/abs/2605.04115",
+      "https://arxiv.org/abs/2605.04126",
+      "https://arxiv.org/abs/2605.04127"
+    ],
+    "last_fetched": "2026-05-07T11:08:17+00:00"
+  },
+  "hamel-husain": {
+    "seen_urls": [
+      "https://hamel.dev/blog/posts/revenge",
+      "https://hamel.dev/blog/posts/evals-skills",
+      "https://hamel.dev/blog/posts/ai-stack",
+      "https://hamel.dev/blog/posts/evals-faq"
+    ],
+    "last_fetched": "2026-05-07T11:08:21+00:00"
+  },
+  "import-ai": {
+    "seen_urls": [
+      "https://importai.substack.com/p/import-ai-455-automating-ai-research"
+    ],
+    "last_fetched": "2026-05-07T11:08:24+00:00"
+  },
+  "mit-tech-review": {
+    "seen_urls": [
+      "https://www.technologyreview.com/2026/05/07/1136933/balcony-solar-boom",
+      "https://www.technologyreview.com/2026/05/07/1136946/whats-next-for-ivf-ai-robot-pgt-gene-editing",
+      "https://www.technologyreview.com/2026/05/06/1136917/the-download-seafloor-science-military-ai-chatbots",
+      "https://www.technologyreview.com/2026/05/05/1136848/the-download-musk-openai-altman-trial-ai-democracy",
+      "https://www.technologyreview.com/2026/05/05/1136843/ai-democracy-blueprint",
+      "https://www.technologyreview.com/2026/05/04/1136826/week-one-of-the-musk-v-altman-trial-what-it-was-like-in-the-room",
+      "https://www.technologyreview.com/2026/05/04/1134425/tailoring-ai-solutions-for-health-care-needs",
+      "https://www.technologyreview.com/2026/05/01/1136800/musk-v-altman-week-1-musk-says-he-was-duped-warns-ai-could-kill-us-all-and-admits-that-xai-distills-openais-models",
+      "https://www.technologyreview.com/2026/05/01/1136779/cyber-insecurity-in-the-ai-era",
+      "https://www.technologyreview.com/2026/05/01/1136772/operationalizing-ai-for-scale-and-sovereignty"
+    ],
+    "last_fetched": "2026-05-07T11:08:28+00:00"
+  },
+  "openai-blog": {
+    "seen_urls": [
+      "https://openai.com/index/parloa",
+      "https://openai.com/index/introducing-chatgpt-futures-class-of-2026",
+      "https://openai.com/index/singular-bank",
+      "https://openai.com/index/uber",
+      "https://openai.com/index/introducing-b2b-signals",
+      "https://openai.com/index/gpt-5-5-instant",
+      "https://openai.com/index/gpt-5-5-instant-system-card",
+      "https://openai.com/index/mrc-supercomputer-networking",
+      "https://openai.com/index/new-ways-to-buy-chatgpt-ads",
+      "https://openai.com/index/openai-pwc-finance-collaboration",
+      "https://openai.com/index/delivering-low-latency-voice-ai-at-scale"
+    ],
+    "last_fetched": "2026-05-07T11:08:31+00:00"
+  },
+  "salesforce-ai": {
+    "seen_urls": [
+      "https://www.salesforce.com/news/stories/hiring-ai-native-graduates",
+      "https://www.salesforce.com/news/press-releases/2026/05/06/merck-animal-health-selects-agentforce-life-sciences",
+      "https://www.salesforce.com/news/stories/tableau-agentic-analytics-platform-announcement",
+      "https://www.salesforce.com/news/stories/marc-benioff-san-francisco"
+    ],
+    "last_fetched": "2026-05-07T11:08:33+00:00"
   }
 }

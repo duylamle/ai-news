@@ -1,5 +1,5 @@
 {
-  "total_entries": 155,
+  "total_entries": 220,
   "months": [
     "2026-05",
     "2026-04",
@@ -12,24 +12,27 @@
   "month_counts": {
     "2025-11": 1,
     "2025-12": 5,
-    "2026-01": 3,
+    "2026-01": 5,
     "2026-02": 3,
-    "2026-03": 1,
+    "2026-03": 3,
     "2026-04": 40,
-    "2026-05": 102
+    "2026-05": 163
   },
   "sources": [
     "alignment-forum",
     "analytics-vidhya",
     "apple-ml",
     "arxiv-cs-cl",
+    "arxiv-cs-lg",
     "aws-ml",
     "bdtechtalks",
     "deepmind-blog",
     "eugene-yan",
     "google-research",
     "goon-nguyen",
+    "hamel-husain",
     "huggingface-blog",
+    "import-ai",
     "karpathy-blog",
     "kdnuggets",
     "last-week-in-ai",
@@ -38,11 +41,14 @@
     "marktechpost",
     "mistral-news",
     "mit-news-ai",
+    "mit-tech-review",
     "mitchell-hashimoto",
     "ml-mastery",
     "ms-research",
     "nvidia-ai",
     "one-useful-thing",
+    "openai-blog",
+    "salesforce-ai",
     "sebastian-raschka",
     "simon-willison",
     "techcrunch-ai",
@@ -50,5 +56,5 @@
     "tldr-ai",
     "venturebeat-ai"
   ],
-  "last_updated": "2026-05-05T19:58:59+00:00"
+  "last_updated": "2026-05-07T11:08:33+00:00"
 }
