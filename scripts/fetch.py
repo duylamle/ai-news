@@ -28,10 +28,10 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 USER_AGENT = "ai-news-aggregator/1.0 (+https://github.com/duylamle/ai-news)"
-MAX_ARTICLES = 30  # raised because 1 fetch/day model — pull more per run
+MAX_ARTICLES = 50  # raised because lookback can be up to 90d — pull plenty per run
 DEFAULT_WINDOW_HOURS = 168  # 7 days; sources can override via recency_hours
 MAX_EXCERPT_CHARS = 1000  # cap excerpt length to avoid wall-of-text in UI
-MAX_LOOKBACK_DAYS = 30  # absolute cap on how far back to look (overrides last_fetched if older)
+MAX_LOOKBACK_DAYS = 90  # absolute cap (Lam có thể không chạy nhiều tuần — lookback tới 3 tháng)
 
 
 def canonical_url(url: str) -> str:

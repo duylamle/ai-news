@@ -13,19 +13,18 @@ echo [1/5] Pulling latest data from GitHub...
 git pull --rebase origin main 2>&1
 echo.
 
-echo [2/5] Determining today's sources...
-for /f "delims=" %%i in ('python -c "import datetime; print(datetime.datetime.utcnow().strftime('%%a').lower())"') do set WEEKDAY=%%i
-echo Today UTC: %WEEKDAY%
-
-REM Combine A + B sources for today
-for /f "delims=" %%i in ('python -c "import json; d=json.load(open(r'sources.json',encoding='utf-8'))['schedule']; w='%WEEKDAY%'; s=set(); [s.update(d[a].get(w,{}).get(slot,[])) for a in ['A','B'] for slot in ['slot1','slot2','slot3']]; print(' '.join(sorted(s)))"') do set SOURCES=%%i
+echo [2/5] Loading ALL sources (full scan, no schedule filter)...
+REM Fetch ALL active sources, both RSS + HTML scrape
+REM Each source's window = since-last-fetch (cap 30d), so no duplicate work
+for /f "delims=" %%i in ('python -c "import json; d=json.load(open(r'sources.json',encoding='utf-8')); active=[s for s,m in d['sources'].items() if not m.get('inactive')]; print(' '.join(sorted(active)))"') do set SOURCES=%%i
 
 if "%SOURCES%"=="" (
-    echo No sources scheduled for %WEEKDAY%. Exiting.
+    echo No active sources. Exiting.
     pause
     exit /b 0
 )
-echo Sources: %SOURCES%
+for /f "delims=" %%i in ('python -c "import json; d=json.load(open(r'sources.json',encoding='utf-8')); print(len([s for s,m in d['sources'].items() if not m.get('inactive')]))"') do set NSOURCES=%%i
+echo Total active sources: %NSOURCES%
 echo.
 
 echo [3/5] Fetching + classifying...
