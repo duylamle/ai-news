@@ -28,9 +28,10 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 USER_AGENT = "ai-news-aggregator/1.0 (+https://github.com/duylamle/ai-news)"
-MAX_ARTICLES = 10
+MAX_ARTICLES = 30  # raised because 1 fetch/day model — pull more per run
 DEFAULT_WINDOW_HOURS = 168  # 7 days; sources can override via recency_hours
 MAX_EXCERPT_CHARS = 1000  # cap excerpt length to avoid wall-of-text in UI
+MAX_LOOKBACK_DAYS = 30  # absolute cap on how far back to look (overrides last_fetched if older)
 
 
 def canonical_url(url: str) -> str:
@@ -95,7 +96,9 @@ def clean_excerpt(text: str, max_chars: int | None = None) -> str:
 def fetch_rss(feed_url: str, window_hours: int = DEFAULT_WINDOW_HOURS) -> list[dict]:
     feed = feedparser.parse(feed_url, agent=USER_AGENT)
     out = []
-    for entry in feed.entries[: MAX_ARTICLES * 3]:
+    # When window_hours is large (since-last-fetch), allow more entries
+    max_to_check = max(MAX_ARTICLES * 3, 100)
+    for entry in feed.entries[:max_to_check]:
         date = parse_date(entry.get("published_parsed") or entry.get("updated_parsed") or entry.get("published"))
         if not is_recent(date, window_hours):
             continue
@@ -211,8 +214,37 @@ def fetch_html_listing(url: str, link_selector: str | None = None) -> list[dict]
     return enriched[:MAX_ARTICLES]
 
 
-def fetch_source(source_id: str, source_meta: dict) -> list[dict]:
-    window_hours = source_meta.get("recency_hours", DEFAULT_WINDOW_HOURS)
+def compute_window_hours(source_meta: dict, state: dict, source_id: str) -> int:
+    """Compute window based on last_fetched (since-last-run model).
+
+    Logic:
+      - If never fetched → use source's default recency_hours (or DEFAULT_WINDOW_HOURS)
+      - If fetched before → window = now - last_fetched, capped at MAX_LOOKBACK_DAYS
+      - Always at least source's recency_hours minimum (e.g. arxiv 48h)
+    """
+    default_window = source_meta.get("recency_hours", DEFAULT_WINDOW_HOURS)
+    last_fetched_str = state.get(source_id, {}).get("last_fetched")
+    if not last_fetched_str:
+        return default_window
+
+    try:
+        # Strip timezone aware suffix for parsing
+        last = datetime.fromisoformat(last_fetched_str.replace("Z", "+00:00"))
+        if not last.tzinfo:
+            last = last.replace(tzinfo=timezone.utc)
+        delta = datetime.now(timezone.utc) - last
+        hours_since = int(delta.total_seconds() / 3600) + 1  # +1 buffer
+        # Cap at 30 days
+        max_hours = MAX_LOOKBACK_DAYS * 24
+        # At least the source's default window
+        return max(default_window, min(hours_since, max_hours))
+    except (ValueError, TypeError):
+        return default_window
+
+
+def fetch_source(source_id: str, source_meta: dict, state: dict | None = None) -> list[dict]:
+    window_hours = compute_window_hours(source_meta, state or {}, source_id)
+    print(f"[fetch] {source_id}: window={window_hours}h", file=sys.stderr)
 
     feed_url = source_meta.get("feed_url")
     if feed_url:
@@ -288,7 +320,7 @@ def main():
 
     state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
 
-    articles = fetch_source(args.source_id, source_meta)
+    articles = fetch_source(args.source_id, source_meta, state)
     fresh = filter_dedup(articles, state, args.source_id)
 
     for a in fresh:
